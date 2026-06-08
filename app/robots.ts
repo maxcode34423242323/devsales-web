@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://devsales.dev/sitemap.xml",
+    sitemap: "https://devilsales.dev/sitemap.xml",
   };
 }
