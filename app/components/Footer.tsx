@@ -67,7 +67,7 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-zinc-200 pt-8 text-sm text-zinc-500 md:flex-row md:items-center md:justify-between">
           <p>
-            © 2026 DevSales Web. All rights reserved.
+            © 2026 DevilSales Web. All rights reserved.
           </p>
 
           <div className="flex gap-6">
