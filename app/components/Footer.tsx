@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-4">
           <div>
             <h3 className="text-xl font-bold text-black">
-              DevSales Web
+              DevilSales Web
             </h3>
 
             <p className="mt-4 text-sm leading-7 text-zinc-600">
@@ -57,7 +57,7 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-3 text-sm text-zinc-600">
-              <li>info@devsales.dev</li>
+              <li>info@devilsales.dev</li>
               <li>Europe</li>
               <li>United Kingdom</li>
               <li>United Arab Emirates</li>
