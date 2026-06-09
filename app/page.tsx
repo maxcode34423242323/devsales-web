@@ -45,7 +45,7 @@ export default function Home() {
       <Navbar />
 
       {/* PREMIUM HERO */}
-      <section className="relative min-h-screen overflow-hidden px-6 pb-32 pt-44">
+      <section className="relative overflow-hidden px-6 pb-12 pt-44">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),transparent_35%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.18),transparent_35%),linear-gradient(180deg,#ffffff_0%,#f7f8fb_100%)]" />
 
         <motion.div
@@ -179,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* REALITY CHECK */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
+      <section className="mx-auto max-w-7xl px-6 pt-4 pb-28">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
           The Reality Check
         </p>
