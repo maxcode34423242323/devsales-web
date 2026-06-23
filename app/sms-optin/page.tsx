@@ -1,34 +1,77 @@
 import Script from "next/script";
 
-export default function SmsOptInPage() {
+export default function SmsOptinPage() {
   return (
-    <>
-      <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
-        <div className="max-w-2xl text-center">
-          <h1 className="text-5xl font-bold mb-6">
-            SMS Updates & Special Offers
-          </h1>
+    <main className="max-w-4xl mx-auto px-6 py-16">
+      <h1 className="text-4xl font-bold mb-8">
+        DevilSales Web SMS Program
+      </h1>
 
-          <p className="text-lg text-gray-300 mb-8">
-            Subscribe to receive updates, promotional offers, special discounts
-            and important notifications from DevilSales Web.
-          </p>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        Business Information
+      </h2>
 
-          <p className="text-sm text-gray-500">
-            By submitting your phone number, you agree to receive SMS messages
-            from DevilSales Web. Message frequency may vary. Reply STOP to
-            unsubscribe.
-          </p>
-        </div>
-      </main>
+      <p>
+        DEVILSALES DI COMERZAN MAXIM
+        <br />
+        VAT: IT03128770355
+        <br />
+        Via Colombana 18A
+        <br />
+        42022 Boretto (RE)
+        <br />
+        Italy
+        <br />
+        Email: info@devilsales.dev
+        <br />
+        Phone: +39 334 207 0234
+      </p>
 
-      <Script
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id="6a391ff0ab6f01632695974c"
-        data-source="WEB_USER"
-        strategy="afterInteractive"
-      />
-    </>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        About Us
+      </h2>
+
+      <p>
+        DevilSales Web is a premium web development agency specializing
+        in custom websites, e-commerce platforms, mobile applications,
+        AI automation, CRM integration and software development.
+      </p>
+
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        SMS Program Disclosure
+      </h2>
+
+      <p>
+        By submitting your phone number through this website, you agree
+        to receive SMS messages from DevilSales Web regarding services,
+        promotions, appointment reminders, updates and customer support.
+      </p>
+
+      <ul className="list-disc ml-6 mt-4">
+        <li>Message frequency may vary.</li>
+        <li>Message and data rates may apply.</li>
+        <li>Reply STOP to unsubscribe.</li>
+        <li>Reply HELP for assistance.</li>
+        <li>Consent is not a condition of purchase.</li>
+      </ul>
+
+      <div className="mt-10">
+        <a href="/privacy">Privacy Policy</a>
+        {" | "}
+        <a href="/terms">Terms of Service</a>
+        {" | "}
+        <a href="/sms-policy">SMS Policy</a>
+      </div>
+
+      <div className="mt-12">
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a391ff0ab6f01632695974c"
+          data-source="WEB_USER"
+          strategy="afterInteractive"
+        />
+      </div>
+    </main>
   );
 }
