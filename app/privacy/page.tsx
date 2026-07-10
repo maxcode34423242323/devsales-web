@@ -173,7 +173,7 @@ export default function PrivacyPage() {
               <br />
               VAT: IT03128770355
               <br />
-              Via Colombana 18A
+              Via Colombana 18
               <br />
               42022 Boretto (RE)
               <br />
