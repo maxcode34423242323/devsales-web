@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -17,6 +18,7 @@ type FormData = {
   projectDetails: string;
   companySize: string;
   timeline: string;
+  smsConsent: boolean;
 };
 
 export default function ContactPage() {
@@ -33,9 +35,12 @@ export default function ContactPage() {
     projectDetails: "",
     companySize: "",
     timeline: "",
+    smsConsent: false,
   });
 
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof FormData, string>>
+  >({});
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState("");
@@ -46,15 +51,21 @@ export default function ContactPage() {
       | React.ChangeEvent<HTMLTextAreaElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) {
-    const { name, value } = event.target;
+    const target = event.target;
+    const name = target.name as keyof FormData;
 
-    setForm((prev) => ({
-      ...prev,
+    const value =
+      target instanceof HTMLInputElement && target.type === "checkbox"
+        ? target.checked
+        : target.value;
+
+    setForm((previous) => ({
+      ...previous,
       [name]: value,
     }));
 
-    setErrors((prev) => ({
-      ...prev,
+    setErrors((previous) => ({
+      ...previous,
       [name]: "",
     }));
 
@@ -63,11 +74,15 @@ export default function ContactPage() {
   }
 
   function validateForm() {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: Partial<Record<keyof FormData, string>> = {};
 
-    if (!form.fullName.trim()) newErrors.fullName = "Full name is required.";
-    if (!form.companyName.trim())
+    if (!form.fullName.trim()) {
+      newErrors.fullName = "Full name is required.";
+    }
+
+    if (!form.companyName.trim()) {
       newErrors.companyName = "Company name is required.";
+    }
 
     if (!form.businessEmail.trim()) {
       newErrors.businessEmail = "Business email is required.";
@@ -89,11 +104,21 @@ export default function ContactPage() {
         "Enter a valid website URL. Example: https://company.com";
     }
 
-    if (!form.country.trim()) newErrors.country = "Company country is required.";
-    if (!form.industry) newErrors.industry = "Please select an industry.";
-    if (!form.serviceNeeded)
+    if (!form.country.trim()) {
+      newErrors.country = "Company country is required.";
+    }
+
+    if (!form.industry) {
+      newErrors.industry = "Please select an industry.";
+    }
+
+    if (!form.serviceNeeded) {
       newErrors.serviceNeeded = "Please select a service.";
-    if (!form.budget) newErrors.budget = "Please select a project budget.";
+    }
+
+    if (!form.budget) {
+      newErrors.budget = "Please select a project budget.";
+    }
 
     if (!form.projectDetails.trim()) {
       newErrors.projectDetails = "Project details are required.";
@@ -102,14 +127,22 @@ export default function ContactPage() {
         "Please write at least 30 characters about your project.";
     }
 
+    if (!form.smsConsent) {
+      newErrors.smsConsent =
+        "You must provide consent to receive SMS messages.";
+    }
+
     setErrors(newErrors);
+
     return Object.keys(newErrors).length === 0;
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      return;
+    }
 
     setLoading(true);
     setServerError("");
@@ -127,7 +160,9 @@ export default function ContactPage() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        setServerError(data.error || "Something went wrong. Please try again.");
+        setServerError(
+          data.error || "Something went wrong. Please try again."
+        );
         return;
       }
 
@@ -146,6 +181,7 @@ export default function ContactPage() {
         projectDetails: "",
         companySize: "",
         timeline: "",
+        smsConsent: false,
       });
     } catch {
       setServerError("Connection error. Please try again.");
@@ -261,7 +297,9 @@ export default function ContactPage() {
                   placeholder="+39 334 207 0234"
                   className={inputClass}
                 />
-                {errors.phone && <p className={errorClass}>{errors.phone}</p>}
+                {errors.phone && (
+                  <p className={errorClass}>{errors.phone}</p>
+                )}
               </div>
 
               <div>
@@ -313,6 +351,7 @@ export default function ContactPage() {
                   <option value="Technology">Technology</option>
                   <option value="Other">Other</option>
                 </select>
+
                 {errors.industry && (
                   <p className={errorClass}>{errors.industry}</p>
                 )}
@@ -345,6 +384,7 @@ export default function ContactPage() {
                     Ongoing Maintenance & Support
                   </option>
                 </select>
+
                 {errors.serviceNeeded && (
                   <p className={errorClass}>{errors.serviceNeeded}</p>
                 )}
@@ -359,11 +399,18 @@ export default function ContactPage() {
                   className={inputClass}
                 >
                   <option value="">Select budget</option>
-                  <option value="€5,000 - €10,000">€5,000 - €10,000</option>
-                  <option value="€10,000 - €25,000">€10,000 - €25,000</option>
-                  <option value="€25,000 - €50,000">€25,000 - €50,000</option>
+                  <option value="€5,000 - €10,000">
+                    €5,000 - €10,000
+                  </option>
+                  <option value="€10,000 - €25,000">
+                    €10,000 - €25,000
+                  </option>
+                  <option value="€25,000 - €50,000">
+                    €25,000 - €50,000
+                  </option>
                   <option value="€50,000+">€50,000+</option>
                 </select>
+
                 {errors.budget && (
                   <p className={errorClass}>{errors.budget}</p>
                 )}
@@ -414,8 +461,52 @@ export default function ContactPage() {
                   placeholder="Tell us what you want to build or improve."
                   className={inputClass}
                 />
+
                 {errors.projectDetails && (
                   <p className={errorClass}>{errors.projectDetails}</p>
+                )}
+              </div>
+
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
+                <label className="flex cursor-pointer items-start gap-3">
+                  <input
+                    name="smsConsent"
+                    type="checkbox"
+                    checked={form.smsConsent}
+                    onChange={handleChange}
+                    className="mt-1 h-5 w-5 shrink-0 accent-black"
+                  />
+
+                  <span className="text-sm leading-6 text-zinc-700">
+                    By checking this box and submitting this form, I agree to
+                    receive SMS messages from DEVILSALES regarding my inquiry,
+                    quotations, appointment scheduling, project updates,
+                    customer support and service-related notifications. Message
+                    frequency varies. Message and data rates may apply. Reply{" "}
+                    <strong>STOP</strong> to unsubscribe and{" "}
+                    <strong>HELP</strong> for assistance. Consent is not a
+                    condition of purchase. See our{" "}
+                    <Link
+                      href="/privacy"
+                      target="_blank"
+                      className="font-medium underline underline-offset-2"
+                    >
+                      Privacy Policy
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      href="/sms-policy"
+                      target="_blank"
+                      className="font-medium underline underline-offset-2"
+                    >
+                      SMS Terms &amp; Conditions
+                    </Link>
+                    .
+                  </span>
+                </label>
+
+                {errors.smsConsent && (
+                  <p className={errorClass}>{errors.smsConsent}</p>
                 )}
               </div>
 
@@ -434,7 +525,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !form.smsConsent}
                 className="rounded-xl bg-black px-8 py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? "Sending..." : "Submit Project Request"}
