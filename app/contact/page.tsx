@@ -191,45 +191,43 @@ export default function ContactPage() {
   }
 
   const inputClass =
-    "mt-3 w-full rounded-xl border border-zinc-200 bg-white px-4 py-4 text-black outline-none transition placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-4 focus:ring-zinc-100";
+    "mt-3 w-full rounded-[7px] border border-white/15 bg-white/5 px-4 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#8d4cff] focus:ring-2 focus:ring-[#6100ff]/25";
 
-  const labelClass = "text-sm font-medium text-zinc-700";
+  const labelClass = "text-sm font-normal text-white/70";
   const errorClass = "mt-2 text-sm text-red-500";
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="inner-page">
       <Navbar />
 
-      <section className="relative overflow-hidden px-6 pb-32 pt-48">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[140px]" />
-        <div className="absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-purple-200 opacity-40 blur-[120px]" />
+      <section className="relative overflow-hidden px-5 pb-32 pt-40 md:px-10 md:pt-48">
 
         <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="mb-6 text-sm uppercase tracking-[0.35em] text-zinc-500">
+            <p className="section-kicker mb-6">
               Start A Project
             </p>
 
-            <h1 className="max-w-3xl text-6xl font-bold leading-tight tracking-tight text-black md:text-7xl">
-              Let&apos;s Build Something That Moves Revenue.
+            <h1 className="max-w-3xl text-6xl font-light leading-[.95] text-white md:text-[60px]">
+              Let&apos;s build the website your business deserves.
             </h1>
 
-            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-zinc-600">
+            <p className="mt-8 max-w-2xl text-lg leading-[25.2px] text-white/60">
               Tell us about your company, your current digital infrastructure
               and what you want to improve. We&apos;ll review the details and
               respond with the next best step.
             </p>
 
-            <div className="mt-12 rounded-3xl border border-zinc-200 bg-white/80 p-8 shadow-xl backdrop-blur">
+            <div className="mt-12 rounded-[10px] border border-white/12 bg-[#160045] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
                 Minimum Engagement
               </p>
 
-              <p className="mt-4 text-4xl font-bold text-black">€5,000+</p>
+              <p className="mt-4 text-4xl font-light text-white">$10,000+</p>
 
-              <p className="mt-4 leading-7 text-zinc-600">
+              <p className="mt-4 leading-7 text-white/55">
                 We work with ambitious companies that need premium websites,
-                e-commerce systems, mobile applications and long-term digital
+                custom websites, redesigns and conversion-focused digital
                 infrastructure.
               </p>
             </div>
@@ -237,7 +235,7 @@ export default function ContactPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-zinc-200 bg-white/90 p-8 shadow-2xl backdrop-blur"
+            className="rounded-[20px] border border-white/12 bg-[#160045] p-6 shadow-[18px_18px_0_#6100ff] md:p-10"
           >
             <div className="grid gap-6">
               <div>
@@ -344,6 +342,8 @@ export default function ContactPage() {
                   <option value="Automotive">Automotive</option>
                   <option value="Real Estate">Real Estate</option>
                   <option value="Legal">Legal</option>
+                  <option value="Contractors & Home Services">Contractors &amp; Home Services</option>
+                  <option value="Professional Services">Professional Services</option>
                   <option value="Luxury Brands">Luxury Brands</option>
                   <option value="E-Commerce">E-Commerce</option>
                   <option value="Healthcare">Healthcare</option>
@@ -373,13 +373,8 @@ export default function ContactPage() {
                     E-Commerce Development
                   </option>
                   <option value="UI/UX Redesign">UI/UX Redesign</option>
-                  <option value="iOS Application">iOS Application</option>
-                  <option value="Android Application">
-                    Android Application
-                  </option>
-                  <option value="Full Digital Transformation">
-                    Full Digital Transformation
-                  </option>
+                  <option value="Website Strategy & Design">Website Strategy &amp; Design</option>
+                  <option value="Website Redesign">Website Redesign</option>
                   <option value="Ongoing Maintenance & Support">
                     Ongoing Maintenance & Support
                   </option>
@@ -399,16 +394,13 @@ export default function ContactPage() {
                   className={inputClass}
                 >
                   <option value="">Select budget</option>
-                  <option value="€5,000 - €10,000">
-                    €5,000 - €10,000
+                  <option value="$10,000 - $25,000">
+                    $10,000 - $25,000
                   </option>
-                  <option value="€10,000 - €25,000">
-                    €10,000 - €25,000
+                  <option value="$25,000 - $50,000">
+                    $25,000 - $50,000
                   </option>
-                  <option value="€25,000 - €50,000">
-                    €25,000 - €50,000
-                  </option>
-                  <option value="€50,000+">€50,000+</option>
+                  <option value="$50,000+">$50,000+</option>
                 </select>
 
                 {errors.budget && (
@@ -526,7 +518,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading || !form.smsConsent}
-                className="rounded-xl bg-black px-8 py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="bg-[#2557ff] px-8 py-5 font-black uppercase tracking-wider text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? "Sending..." : "Submit Project Request"}
               </button>
