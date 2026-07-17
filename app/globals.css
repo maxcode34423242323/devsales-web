@@ -84,6 +84,7 @@ body{overflow-x:hidden}
 
 /* The case study uses a tighter footer and avoids Safari blur-layer flicker. */
 .case-page{isolation:isolate;background:#0b0132}
+.case-page>section{width:100%;max-width:1200px;margin-left:auto;margin-right:auto}
 .compact-footer .footer-cta{padding:72px 0 78px}
 .compact-footer .footer-cta h2{max-width:780px;font-size:clamp(46px,5vw,72px)}
 .compact-footer .footer-talk{width:170px;height:170px;margin-top:18px}
