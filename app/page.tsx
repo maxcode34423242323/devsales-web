@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -22,9 +22,6 @@ const capabilities = [
 const reveal = { initial:{opacity:0,y:42}, whileInView:{opacity:1,y:0}, viewport:{once:true,margin:"-80px"}, transition:{duration:.75,ease:[.22,1,.36,1] as const} };
 
 export default function Home(){
-  const {scrollYProgress}=useScroll();
-  const yLeft=useTransform(scrollYProgress,[0,.3],[0,-80]);
-  const yRight=useTransform(scrollYProgress,[0,.3],[0,80]);
   return <main className="mixar-page overflow-hidden"><Navbar/>
     <section className="relative min-h-[980px] px-5 pb-24 pt-36 md:px-10 md:pt-44">
       <div className="purple-glow glow-one"/><div className="purple-glow glow-two"/>
@@ -36,9 +33,9 @@ export default function Home(){
           <motion.div {...reveal} className="flex gap-3 md:justify-end"><Link className="mixar-button fill" href="/contact">Start a project ↗</Link><a className="mixar-button hidden sm:inline-flex" href="#work">View work</a></motion.div>
         </div>
         <div className="relative mt-20 h-[440px] md:h-[660px]">
-          <motion.div style={{y:yLeft}} initial={{opacity:0,x:-80,rotate:-3}} animate={{opacity:1,x:0,rotate:-3}} transition={{delay:.35,duration:1}} className="browser-card absolute left-[-12%] top-16 w-[58%]"><BrowserTop/><Image src="/images/apex-legal.png" alt="Law firm website interface" width={1852} height={1192}/></motion.div>
-          <motion.div initial={{opacity:0,y:100}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:1}} className="browser-card absolute left-[22%] top-0 z-10 w-[58%]"><BrowserTop/><Image src="/images/devilsales-home.png" alt="Premium digital platform" width={1858} height={1195}/></motion.div>
-          <motion.div style={{y:yRight}} initial={{opacity:0,x:80,rotate:3}} animate={{opacity:1,x:0,rotate:3}} transition={{delay:.45,duration:1}} className="browser-card absolute right-[-12%] top-20 w-[55%]"><BrowserTop/><Image src="/images/elite-estates.png" alt="Luxury builder website interface" width={1852} height={1192}/></motion.div>
+          <motion.div initial={{opacity:0,x:-80,rotate:-3}} animate={{opacity:1,x:0,rotate:-3}} transition={{delay:.35,duration:1}} className="browser-card absolute left-[-12%] top-16 w-[58%]"><BrowserTop/><Image src="/images/apex-legal.webp" alt="Law firm website interface" width={1200} height={772} sizes="(max-width: 767px) 70vw, 58vw" quality={68}/></motion.div>
+          <motion.div initial={{opacity:0,y:100}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:1}} className="browser-card absolute left-[22%] top-0 z-10 w-[58%]"><BrowserTop/><Image src="/images/devilsales-home.webp" alt="Premium digital platform" width={1200} height={772} sizes="(max-width: 767px) 70vw, 58vw" quality={68}/></motion.div>
+          <motion.div initial={{opacity:0,x:80,rotate:3}} animate={{opacity:1,x:0,rotate:3}} transition={{delay:.45,duration:1}} className="browser-card absolute right-[-12%] top-20 w-[55%]"><BrowserTop/><Image src="/images/elite-estates.webp" alt="Luxury builder website interface" width={1200} height={772} sizes="(max-width: 767px) 70vw, 55vw" quality={68}/></motion.div>
         </div>
       </div>
     </section>
@@ -76,8 +73,8 @@ export default function Home(){
     <section id="work" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
       <motion.div {...reveal} className="mb-16"><p className="section-kicker">[ Selected concepts ]</p><h2 className="mt-6 max-w-5xl text-6xl font-medium leading-none tracking-[-.055em] text-white md:text-8xl lg:text-[110px]">Different industries.<br/><span className="text-white/28">One standard.</span></h2></motion.div>
       <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className="work-card group">
-        <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${title} website`} className="portfolio-frame relative block overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></a>
-        <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference · Not our client work</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
+        <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${title} website`} className="portfolio-frame relative block overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill sizes="(max-width: 767px) calc(100vw - 40px), 50vw" quality={65} className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></a>
+        <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
       </motion.article>)}</div>
     </div></section>
 

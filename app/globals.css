@@ -65,3 +65,13 @@ body{overflow-x:hidden}
 /* Desktop dropdowns attach directly to the navbar, following Mixar's vivid panel treatment. */
 .navbar-shell{position:relative}.desktop-nav{height:82px;align-items:stretch;gap:2px}.desktop-nav-group{position:relative;display:flex;align-items:center}.desktop-nav-group>button{height:100%;padding:0 15px;color:#fff;font-size:15px;transition:color .25s}.desktop-nav-group:hover>button{color:#d8c5ff}.desktop-dropdown{position:absolute;left:0;top:82px;width:235px;border-radius:0 0 11px 11px;background:linear-gradient(145deg,#7c1fff,#5d00f1);padding:18px 0 20px;box-shadow:0 24px 55px rgba(28,0,82,.34)}.desktop-dropdown.wide{width:245px}.desktop-dropdown a{display:flex;min-height:41px;align-items:center;gap:13px;padding:7px 23px;color:#fff;font-size:15px;font-weight:500;white-space:nowrap;transition:padding .25s,background .25s}.desktop-dropdown a:hover{padding-left:29px;background:rgba(255,255,255,.09)}.desktop-dropdown a i{display:block;width:0;height:2px;border-radius:2px;background:#fff;transition:width .25s}.desktop-dropdown a i.visible,.desktop-dropdown a:hover i{width:18px}
 @media(min-width:768px){.navbar-shell>.nav-brand{position:absolute;left:50%;transform:translateX(-50%)}}
+
+/* Mobile performance: retain the design while avoiding expensive full-screen GPU work on iOS. */
+@media(max-width:767px){
+  .navbar-shell{background:#51496c!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .purple-glow{filter:blur(52px);opacity:.3}
+  .browser-card{box-shadow:0 18px 45px rgba(0,0,0,.34),0 0 24px rgba(104,35,255,.16)}
+  .agency-flow:before,.agency-flow:after,.agency-flow i{animation:none!important}
+  .agency-flow i:nth-child(2){display:none}
+  .mobile-overlay,.concept-pill,.template-project-image>span,.agency-stats div,.contact-hero-stats>div{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
