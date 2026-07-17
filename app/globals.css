@@ -1,26 +1,2 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+:root{--ink:#171816;--paper:#eee9df;--gold:#ad9467}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}::selection{background:#b49c71;color:#161714}.luxury-page{background:var(--paper);color:var(--ink)}.lux-serif{font-family:Georgia,"Times New Roman",serif;font-weight:400}.gold-label{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}.hero-lux{background:radial-gradient(circle at 82% 28%,#34372f 0,transparent 32%),#151614}.hero-orbit{border:1px solid rgba(190,166,119,.18);background:radial-gradient(circle at 45% 42%,rgba(194,171,126,.16),rgba(0,0,0,.04) 44%,rgba(0,0,0,.5) 72%);box-shadow:0 0 120px rgba(188,165,121,.07),inset 0 0 100px rgba(188,165,121,.06)}.lux-button{display:inline-flex;min-width:220px;align-items:center;justify-content:space-between;gap:28px;border:1px solid rgba(197,177,139,.55);padding:20px 24px;color:#f3efe6;font-size:11px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;transition:.45s ease}.lux-button:hover{background:#c0aa80;border-color:#c0aa80;color:#171816}.service-row{transition:background .4s,padding .4s}.service-row:hover{background:rgba(255,255,255,.035);padding-left:18px;padding-right:18px}.marquee{overflow:hidden;white-space:nowrap}.marquee div{display:inline-block;min-width:max-content;animation:marquee 32s linear infinite;color:rgba(23,24,22,.55);font-size:10px;font-weight:700;letter-spacing:.22em}@keyframes marquee{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee div{animation:none}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
