@@ -10,7 +10,6 @@ type FormData = {
   companyName: string;
   businessEmail: string;
   phone: string;
-  companyWebsite: string;
   country: string;
   industry: string;
   serviceNeeded: string;
@@ -27,7 +26,6 @@ export default function ContactPage() {
     companyName: "",
     businessEmail: "",
     phone: "",
-    companyWebsite: "",
     country: "",
     industry: "",
     serviceNeeded: "",
@@ -92,16 +90,9 @@ export default function ContactPage() {
 
     if (!form.phone.trim()) {
       newErrors.phone = "Phone number with country code is required.";
-    } else if (!/^\+[1-9]\d{1,3}[\s\d]{6,18}$/.test(form.phone.trim())) {
+    } else if (!/^\+1[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(form.phone.trim())) {
       newErrors.phone =
-        "Enter a valid phone number with country code. Example: +39 334 207 0234";
-    }
-
-    if (!form.companyWebsite.trim()) {
-      newErrors.companyWebsite = "Company website is required.";
-    } else if (!/^https?:\/\/.+\..+/.test(form.companyWebsite.trim())) {
-      newErrors.companyWebsite =
-        "Enter a valid website URL. Example: https://company.com";
+        "Enter a valid US phone number with country code. Example: +1 315 547 8952";
     }
 
     if (!form.country.trim()) {
@@ -173,7 +164,6 @@ export default function ContactPage() {
         companyName: "",
         businessEmail: "",
         phone: "",
-        companyWebsite: "",
         country: "",
         industry: "",
         serviceNeeded: "",
@@ -191,55 +181,37 @@ export default function ContactPage() {
   }
 
   const inputClass =
-    "mt-3 w-full rounded-xl border border-zinc-200 bg-white px-4 py-4 text-black outline-none transition placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-4 focus:ring-zinc-100";
+    "mt-3 w-full rounded-[7px] border border-white/15 bg-white/5 px-4 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#8d4cff] focus:ring-2 focus:ring-[#6100ff]/25";
 
-  const labelClass = "text-sm font-medium text-zinc-700";
+  const labelClass = "text-sm font-normal text-white/70";
   const errorClass = "mt-2 text-sm text-red-500";
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="inner-page">
       <Navbar />
 
-      <section className="relative overflow-hidden px-6 pb-32 pt-48">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[140px]" />
-        <div className="absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-purple-200 opacity-40 blur-[120px]" />
+      <section className="contact-page-shell">
+        <div className="contact-hero">
+          <div className="agency-flow" aria-hidden="true"><i/><i/><i/></div>
+          <div className="contact-hero-copy"><p className="section-kicker !text-white/65">[ Start a project ]</p><h1>Contact Us</h1><p>Tell us where your business is today and where you want it to go. We&apos;ll turn that context into a clear next step.</p></div>
+          <div className="contact-hero-stats"><div><strong>USA</strong><span>Nationwide focus</span></div><div><strong>$10K+</strong><span>Project engagement</span></div><div><strong>10</strong><span>High-value industries</span></div><div><strong>01</strong><span>Accountable team</span></div></div>
+        </div>
 
-        <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-6 text-sm uppercase tracking-[0.35em] text-zinc-500">
-              Start A Project
-            </p>
-
-            <h1 className="max-w-3xl text-6xl font-bold leading-tight tracking-tight text-black md:text-7xl">
-              Let&apos;s Build Something That Moves Revenue.
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-zinc-600">
-              Tell us about your company, your current digital infrastructure
-              and what you want to improve. We&apos;ll review the details and
-              respond with the next best step.
-            </p>
-
-            <div className="mt-12 rounded-3xl border border-zinc-200 bg-white/80 p-8 shadow-xl backdrop-blur">
-              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-                Minimum Engagement
-              </p>
-
-              <p className="mt-4 text-4xl font-bold text-black">€5,000+</p>
-
-              <p className="mt-4 leading-7 text-zinc-600">
-                We work with ambitious companies that need premium websites,
-                e-commerce systems, mobile applications and long-term digital
-                infrastructure.
-              </p>
-            </div>
+        <div className="contact-main">
+          <div className="contact-side">
+            <p className="section-kicker">[ Get in touch ]</p>
+            <h2>Let&apos;s build the website your business deserves.</h2>
+            <p>Share your goals, current website and timeline. We review every qualified request personally and respond with the most useful next step.</p>
+            <div className="contact-direct-card featured"><h3>DevilSales Web</h3><a href="tel:+13155478952"><ContactIcon type="phone"/><span><small>Call us</small>315-547-8952</span></a><a href="mailto:info@devilsales.dev"><ContactIcon type="mail"/><span><small>Email us</small>info@devilsales.dev</span></a><div><ContactIcon type="location"/><span><small>Service area</small>United States · Nationwide</span></div></div>
           </div>
 
           <form
+            id="project-brief"
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-zinc-200 bg-white/90 p-8 shadow-2xl backdrop-blur"
+            className="contact-form"
           >
-            <div className="grid gap-6">
+            <div className="contact-form-heading"><p className="section-kicker">[ Project brief ]</p><h2>Send us a message</h2><p>Fields marked with * are required.</p></div>
+            <div className="contact-form-grid">
               <div>
                 <label className={labelClass}>Full Name *</label>
                 <input
@@ -294,26 +266,11 @@ export default function ContactPage() {
                   type="tel"
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="+39 334 207 0234"
+                  placeholder="+1 315 547 8952"
                   className={inputClass}
                 />
                 {errors.phone && (
                   <p className={errorClass}>{errors.phone}</p>
-                )}
-              </div>
-
-              <div>
-                <label className={labelClass}>Company Website *</label>
-                <input
-                  name="companyWebsite"
-                  type="text"
-                  value={form.companyWebsite}
-                  onChange={handleChange}
-                  placeholder="https://company.com"
-                  className={inputClass}
-                />
-                {errors.companyWebsite && (
-                  <p className={errorClass}>{errors.companyWebsite}</p>
                 )}
               </div>
 
@@ -324,7 +281,7 @@ export default function ContactPage() {
                   type="text"
                   value={form.country}
                   onChange={handleChange}
-                  placeholder="Germany, UAE, United Kingdom..."
+                  placeholder="New York, California, United States..."
                   className={inputClass}
                 />
                 {errors.country && (
@@ -344,6 +301,8 @@ export default function ContactPage() {
                   <option value="Automotive">Automotive</option>
                   <option value="Real Estate">Real Estate</option>
                   <option value="Legal">Legal</option>
+                  <option value="Contractors & Home Services">Contractors &amp; Home Services</option>
+                  <option value="Professional Services">Professional Services</option>
                   <option value="Luxury Brands">Luxury Brands</option>
                   <option value="E-Commerce">E-Commerce</option>
                   <option value="Healthcare">Healthcare</option>
@@ -373,13 +332,8 @@ export default function ContactPage() {
                     E-Commerce Development
                   </option>
                   <option value="UI/UX Redesign">UI/UX Redesign</option>
-                  <option value="iOS Application">iOS Application</option>
-                  <option value="Android Application">
-                    Android Application
-                  </option>
-                  <option value="Full Digital Transformation">
-                    Full Digital Transformation
-                  </option>
+                  <option value="Website Strategy & Design">Website Strategy &amp; Design</option>
+                  <option value="Website Redesign">Website Redesign</option>
                   <option value="Ongoing Maintenance & Support">
                     Ongoing Maintenance & Support
                   </option>
@@ -399,16 +353,13 @@ export default function ContactPage() {
                   className={inputClass}
                 >
                   <option value="">Select budget</option>
-                  <option value="€5,000 - €10,000">
-                    €5,000 - €10,000
+                  <option value="$10,000 - $25,000">
+                    $10,000 - $25,000
                   </option>
-                  <option value="€10,000 - €25,000">
-                    €10,000 - €25,000
+                  <option value="$25,000 - $50,000">
+                    $25,000 - $50,000
                   </option>
-                  <option value="€25,000 - €50,000">
-                    €25,000 - €50,000
-                  </option>
-                  <option value="€50,000+">€50,000+</option>
+                  <option value="$50,000+">$50,000+</option>
                 </select>
 
                 {errors.budget && (
@@ -451,7 +402,7 @@ export default function ContactPage() {
                 </select>
               </div>
 
-              <div>
+              <div className="contact-span">
                 <label className={labelClass}>Project Details *</label>
                 <textarea
                   name="projectDetails"
@@ -467,17 +418,17 @@ export default function ContactPage() {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
+              <div className={`consent-card contact-span ${form.smsConsent ? "checked" : ""}`}>
                 <label className="flex cursor-pointer items-start gap-3">
                   <input
                     name="smsConsent"
                     type="checkbox"
                     checked={form.smsConsent}
                     onChange={handleChange}
-                    className="mt-1 h-5 w-5 shrink-0 accent-black"
+                    className="consent-checkbox"
                   />
 
-                  <span className="text-sm leading-6 text-zinc-700">
+                  <span className="text-sm leading-6 text-white/65">
                     By checking this box and submitting this form, I agree to
                     receive SMS messages from DEVILSALES regarding my inquiry,
                     quotations, appointment scheduling, project updates,
@@ -511,13 +462,13 @@ export default function ContactPage() {
               </div>
 
               {serverError && (
-                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+                <div className="contact-span rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
                   {serverError}
                 </div>
               )}
 
               {success && (
-                <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+                <div className="contact-span rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
                   Your request has been sent successfully. We will review your
                   project and contact you shortly.
                 </div>
@@ -526,16 +477,37 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading || !form.smsConsent}
-                className="rounded-xl bg-black px-8 py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="contact-span rounded-full bg-white px-8 py-5 font-medium uppercase tracking-wider text-[#6100ff] transition hover:bg-[#8b4dff] hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {loading ? "Sending..." : "Submit Project Request"}
               </button>
             </div>
           </form>
         </div>
+
+        <section className="contact-resources">
+          <div className="contact-resources-heading"><p className="section-kicker">[ Resources ]</p><h2>Everything you need to make the right next move.</h2><p>Explore our capabilities, understand project investment and review visual references for your industry.</p></div>
+          <div className="contact-resource-grid">
+            <Link href="/#services" className="contact-resource-card"><ResourceIcon type="services"/><h3>Services</h3><p>Explore strategy, UI/UX design, custom development and connected growth systems.</p><span>Explore services ↗</span></Link>
+            <Link href="/contact#project-brief" className="contact-resource-card"><ResourceIcon type="investment"/><h3>Project Investment</h3><p>Choose the budget range, timeline and scope that best matches your business goals.</p><span>Plan your project ↗</span></Link>
+            <Link href="/work" className="contact-resource-card"><ResourceIcon type="portfolio"/><h3>Portfolio</h3><p>Review real US-market website references across ten high-value service industries.</p><span>View portfolio ↗</span></Link>
+          </div>
+        </section>
       </section>
 
       <Footer />
     </main>
   );
+}
+
+function ContactIcon({type}:{type:"phone"|"mail"|"location"}) {
+  if(type==="phone") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.2 3.5 10 7.8 8.3 10c1.2 2.5 3.2 4.5 5.7 5.7l2.2-1.7 4.3 2.8-.7 3.2c-.2.8-.9 1.4-1.8 1.4C9.5 21.4 2.6 14.5 2.6 6c0-.9.6-1.6 1.4-1.8l3.2-.7Z"/></svg></span>;
+  if(type==="mail") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>;
+  return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>;
+}
+
+function ResourceIcon({type}:{type:"services"|"investment"|"portfolio"}) {
+  if(type==="services") return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="8" cy="7" r="1.5"/><circle cx="16" cy="12" r="1.5"/><circle cx="10" cy="17" r="1.5"/></svg></span>;
+  if(type==="investment") return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v5c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg></span>;
+  return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>;
 }

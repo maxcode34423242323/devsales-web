@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.devilsales.dev"),
 
   title: {
-    default: "DevilSales Web | Premium Web Development Agency",
+    default: "DevilSales Web | Custom Websites Built to Win Business",
     template: "%s | DevilSales Web",
   },
 
   description:
-    "Premium web development agency building high-converting websites, e-commerce platforms, mobile applications and scalable digital infrastructure for ambitious brands worldwide.",
+    "Custom web design and development for ambitious service businesses. Strategy, conversion-led design, development and integrations from one accountable team.",
 };
 
 export default function RootLayout({
@@ -20,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

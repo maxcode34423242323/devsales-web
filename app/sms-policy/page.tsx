@@ -4,13 +4,13 @@ import Footer from "../components/Footer";
 
 export default function SmsPolicyPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="legal-page">
       <Navbar />
 
-      <section className="mx-auto max-w-5xl px-6 pb-32 pt-48">
+      <section className="legal-shell">
         <h1 className="text-5xl font-bold">SMS Terms &amp; Conditions</h1>
 
-        <div className="mt-12 space-y-10 leading-8 text-zinc-400">
+        <div className="legal-copy space-y-10">
           <section className="space-y-4">
             <p>
               These SMS Terms &amp; Conditions explain how DEVILSALES DI
@@ -44,7 +44,7 @@ export default function SmsPolicyPage() {
                 info@devilsales.dev
               </a>
               <br />
-              Phone: +39 334 207 0234
+              Phone: 315-547-8952
             </p>
           </section>
 

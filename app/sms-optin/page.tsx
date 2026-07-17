@@ -1,9 +1,12 @@
 import Script from "next/script";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function SmsOptinPage() {
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-16">
-      <div className="max-w-4xl mx-auto">
+    <main className="legal-page">
+      <Navbar />
+      <div className="legal-shell legal-copy">
         <h1 className="text-4xl font-bold mb-8">
           DevilSales Web SMS Program
         </h1>
@@ -19,7 +22,7 @@ export default function SmsOptinPage() {
           <br />
           Email: info@devilsales.dev
           <br />
-          Phone: +39 334 207 0234
+          Phone: 315-547-8952
         </p>
 
         <h2 className="text-2xl font-semibold mb-4">About Us</h2>
@@ -61,7 +64,7 @@ export default function SmsOptinPage() {
           data-source="WEB_USER"
           strategy="afterInteractive"
         />
-      </div>
+      </div><Footer />
     </main>
   );
 }

@@ -1,372 +1,93 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-export default function Home() {
-  const { scrollY } = useScroll();
+const projects = [
+  ["Personal Injury Law", "Omar Ochoa Law", "/images/reference-omar-better.jpg", "https://www.omarochoalaw.com"], ["Plastic Surgery", "Austin-Weston", "/images/reference-austin-plastic.png", "https://www.austin-weston.com"],
+  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/reference-apa-aesthetic.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/reference-yuras-better.jpg", "https://www.yurasroofing.com"],
+  ["HVAC", "Comfort Systems USA", "/images/reference-comfort-better.jpg", "https://comfortsystemsusa.com"], ["Home Remodeling", "Excel Remodeling", "/images/reference-excel-better.jpg", "https://www.excelremodeling.com"],
+  ["Luxury Home Builders", "DWELL44", "/images/reference-dwell44-better.jpg", "https://dwell44.com/blogs/portfolio"], ["Medical Spa", "SkinSpirit", "/images/reference-skinspirit.png", "https://www.skinspirit.com"],
+  ["Restoration", "FIRST ONSITE", "/images/reference-first-onsite.png", "https://firstonsite.com"], ["Commercial Landscaping", "BrightView", "/images/reference-brightview.png", "https://www.brightview.com"],
+];
+const capabilities = [
+  ["01", "Strategy", "Positioning, audience research and a conversion path built around the way your customers choose."],
+  ["02", "UI/UX Design", "Distinct digital identities and interfaces that make established businesses impossible to overlook."],
+  ["03", "Development", "Fast, responsive builds with purposeful motion, CMS and technical SEO foundations."],
+  ["04", "Growth Systems", "CRM, booking, analytics and ongoing improvements that turn your website into infrastructure."],
+];
+const reveal = { initial:{opacity:0,y:42}, whileInView:{opacity:1,y:0}, viewport:{once:true,margin:"-80px"}, transition:{duration:.75,ease:[.22,1,.36,1] as const} };
 
-  const heroY = useTransform(scrollY, [0, 600], [0, 120]);
-  const mockupY = useTransform(scrollY, [0, 600], [0, -80]);
-
-  const services = [
-    [
-      "Custom Web Development",
-      "Premium websites engineered for conversion, speed and authority.",
-    ],
-    [
-      "E-Commerce Infrastructure",
-      "Online stores designed to increase trust, checkout flow and average order value.",
-    ],
-    [
-      "Premium UI/UX Design",
-      "High-end digital experiences built for credibility, engagement and retention.",
-    ],
-    [
-      "Mobile Applications",
-      "Turnkey iOS and Android applications for ambitious companies.",
-    ],
-    [
-      "Growth Engineering",
-      "Continuous optimization, audits and performance improvements.",
-    ],
-    [
-      "SEO Optimization",
-      "Technical SEO foundations built for indexing, speed and organic growth.",
-    ],
-  ];
-
-  const process = ["Discover", "Design", "Develop", "Launch", "Optimize"];
-
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#f7f8fb] text-black">
-      <Navbar />
-
-      {/* PREMIUM HERO */}
-      <section className="relative overflow-hidden px-6 pb-12 pt-44">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),transparent_35%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.18),transparent_35%),linear-gradient(180deg,#ffffff_0%,#f7f8fb_100%)]" />
-
-        <motion.div
-          style={{ y: heroY }}
-          className="absolute left-1/2 top-0 h-[760px] w-[760px] -translate-x-1/2 rounded-full bg-blue-200/50 blur-[170px]"
-        />
-
-        <motion.div
-          style={{ y: mockupY }}
-          className="absolute right-[-160px] top-40 h-[540px] w-[540px] rounded-full bg-violet-200/60 blur-[150px]"
-        />
-
-        <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1fr_0.9fr]">
-          <motion.div
-            initial={{ opacity: 0, y: 34 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85 }}
-          >
-            <div className="mb-8 inline-flex rounded-full border border-black/10 bg-white/70 px-5 py-2 text-xs font-bold uppercase tracking-[0.25em] text-zinc-700 shadow-sm backdrop-blur">
-              Premium Websites Starting From €5,000
-            </div>
-
-            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.4em] text-zinc-500">
-              DevilSales Web
-            </p>
-
-            <h1 className="max-w-6xl text-6xl font-black leading-[0.88] tracking-[-0.07em] text-black md:text-8xl">
-              Websites That
-              <br />
-              Look Expensive
-              <br />
-              And Sell Better.
-            </h1>
-
-            <p className="mt-9 max-w-3xl text-xl leading-relaxed text-zinc-600">
-              Premium websites, e-commerce platforms and digital systems
-              engineered for brands that need trust, conversion and serious
-              online presence.
-            </p>
-
-            <div className="mt-12 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="rounded-2xl bg-black px-8 py-4 font-bold text-white shadow-2xl shadow-black/20 transition hover:-translate-y-1 hover:opacity-90"
-              >
-                Book A Strategy Call
-              </Link>
-
-              <Link
-                href="/work"
-                className="rounded-2xl border border-black/10 bg-white px-8 py-4 font-bold text-black shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                View Portfolio
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* FLOATING UI MOCKUPS */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.9 }}
-            style={{ y: mockupY }}
-            className="relative hidden lg:block"
-          >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              className="absolute -left-16 top-16 z-20 rounded-3xl border border-black/10 bg-white/90 p-5 shadow-2xl backdrop-blur-xl"
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
-                Conversion
-              </p>
-              <p className="mt-3 text-5xl font-black">+22%</p>
-              <p className="mt-2 text-sm text-zinc-600">
-                Average improvement
-              </p>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 14, 0] }}
-              transition={{ repeat: Infinity, duration: 5 }}
-              className="absolute -right-10 top-32 z-20 rounded-3xl border border-black/10 bg-black p-6 text-white shadow-2xl"
-            >
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-400">
-                CRM Status
-              </p>
-
-              <p className="mt-3 text-3xl font-black">148 Leads</p>
-
-              <p className="mt-2 text-sm text-zinc-400">
-                Connected To Telegram
-              </p>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 6 }}
-              className="absolute bottom-8 -left-10 z-20 rounded-3xl border border-black/10 bg-white p-6 shadow-2xl"
-            >
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">
-                SEO Score
-              </p>
-
-              <p className="mt-3 text-4xl font-black">98</p>
-
-              <div className="mt-3 h-2 rounded-full bg-zinc-200">
-                <div className="h-2 w-[98%] rounded-full bg-black" />
-              </div>
-            </motion.div>
-
-            <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 p-4 shadow-2xl shadow-black/20 backdrop-blur-xl">
-              <div className="rounded-[1.5rem] border border-zinc-200 bg-[#0b0b0f] p-4">
-                <div className="mb-4 flex gap-2">
-                  <span className="h-3 w-3 rounded-full bg-red-400" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-400" />
-                  <span className="h-3 w-3 rounded-full bg-green-400" />
-                </div>
-
-                <div className="overflow-hidden rounded-2xl bg-black">
-                  <img
-                    src="/images/devilsales-home.png"
-                    alt="DevilSales website mockup"
-                    className="h-[420px] w-full object-cover opacity-90"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+export default function Home(){
+  const {scrollYProgress}=useScroll();
+  const yLeft=useTransform(scrollYProgress,[0,.3],[0,-80]);
+  const yRight=useTransform(scrollYProgress,[0,.3],[0,80]);
+  return <main className="mixar-page overflow-hidden"><Navbar/>
+    <section className="relative min-h-[980px] px-5 pb-24 pt-36 md:px-10 md:pt-44">
+      <div className="purple-glow glow-one"/><div className="purple-glow glow-two"/>
+      <div className="relative mx-auto max-w-[1450px]">
+        <motion.div initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="mb-12 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.24em] text-white/45"><span className="h-2 w-2 rounded-full bg-[#9b5cff] shadow-[0_0_18px_#9b5cff]"/>US-focused digital studio · Serving businesses nationwide</motion.div>
+        <motion.h1 initial={{opacity:0,y:65}} animate={{opacity:1,y:0}} transition={{duration:1,ease:[.22,1,.36,1]}} className="max-w-[1320px] text-[16vw] font-medium leading-[.85] tracking-[-.07em] text-white md:text-[132px] lg:text-[170px]">Digital experiences for <span className="gradient-word">serious growth.</span></motion.h1>
+        <div className="mt-14 grid gap-10 border-t border-white/12 pt-8 md:grid-cols-[1.25fr_.75fr] md:items-end">
+          <motion.p {...reveal} className="max-w-2xl text-xl leading-8 text-white/55 md:text-2xl">Strategy, design and development for service businesses ready to become the obvious choice in their market.</motion.p>
+          <motion.div {...reveal} className="flex gap-3 md:justify-end"><Link className="mixar-button fill" href="/contact">Start a project ↗</Link><a className="mixar-button hidden sm:inline-flex" href="#work">View work</a></motion.div>
         </div>
-      </section>
-
-      {/* REALITY CHECK */}
-      <section className="mx-auto max-w-7xl px-6 pt-4 pb-28">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-          The Reality Check
-        </p>
-
-        <h2 className="max-w-4xl text-5xl font-black tracking-[-0.04em] md:text-6xl">
-          Your Website Is Losing Revenue Every Day.
-        </h2>
-
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">
-          Most companies do not have a traffic problem. They have a conversion,
-          performance and trust problem.
-        </p>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-4">
-          {[
-            [
-              "53%",
-              "Visitors leave when a website takes longer than 3 seconds to load.",
-            ],
-            ["70%+", "Most digital traffic now happens on mobile devices."],
-            ["94%", "First impressions are influenced by design and usability."],
-            ["22%", "Average conversion lift after UX optimization."],
-          ].map(([number, text]) => (
-            <motion.div
-              key={number}
-              whileHover={{ y: -8 }}
-              className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-xl shadow-black/5"
-            >
-              <p className="text-5xl font-black">{number}</p>
-              <p className="mt-5 text-sm leading-6 text-zinc-600">{text}</p>
-            </motion.div>
-          ))}
+        <div className="relative mt-20 h-[440px] md:h-[660px]">
+          <motion.div style={{y:yLeft}} initial={{opacity:0,x:-80,rotate:-3}} animate={{opacity:1,x:0,rotate:-3}} transition={{delay:.35,duration:1}} className="browser-card absolute left-[-12%] top-16 w-[58%]"><BrowserTop/><Image src="/images/apex-legal.png" alt="Law firm website interface" width={1852} height={1192}/></motion.div>
+          <motion.div initial={{opacity:0,y:100}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:1}} className="browser-card absolute left-[22%] top-0 z-10 w-[58%]"><BrowserTop/><Image src="/images/devilsales-home.png" alt="Premium digital platform" width={1858} height={1195}/></motion.div>
+          <motion.div style={{y:yRight}} initial={{opacity:0,x:80,rotate:3}} animate={{opacity:1,x:0,rotate:3}} transition={{delay:.45,duration:1}} className="browser-card absolute right-[-12%] top-20 w-[55%]"><BrowserTop/><Image src="/images/elite-estates.png" alt="Luxury builder website interface" width={1852} height={1192}/></motion.div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* SERVICES */}
-      <section id="services" className="mx-auto max-w-7xl px-6 py-28">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-          Services
-        </p>
+    <div className="ticker"><div>DESIGN THAT EARNS ATTENTION&nbsp; ✦ &nbsp;DEVELOPMENT THAT PERFORMS&nbsp; ✦ &nbsp;SYSTEMS THAT CREATE PIPELINE&nbsp; ✦ &nbsp;DESIGN THAT EARNS ATTENTION&nbsp; ✦ &nbsp;DEVELOPMENT THAT PERFORMS&nbsp; ✦ &nbsp;</div></div>
 
-        <h2 className="max-w-4xl text-5xl font-black tracking-[-0.04em] md:text-6xl">
-          Digital Infrastructure Built For Growth.
-        </h2>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map(([title, description]) => (
-            <motion.div
-              key={title}
-              whileHover={{ y: -8 }}
-              className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-xl shadow-black/5"
-            >
-              <h3 className="text-2xl font-black">{title}</h3>
-              <p className="mt-4 leading-relaxed text-zinc-600">
-                {description}
-              </p>
-            </motion.div>
-          ))}
+    <section className="mixar-intro px-5 py-28 md:px-10 md:py-36"><div className="mx-auto max-w-[1450px]">
+      <motion.div {...reveal} className="agency-stage">
+        <div className="agency-flow" aria-hidden="true"><i/><i/><i/></div>
+        <div className="agency-copy">
+          <p className="section-kicker !text-white/65">[ US digital studio ]</p>
+          <h2>High-converting websites for ambitious service businesses.</h2>
         </div>
-      </section>
-
-      {/* WORK */}
-      <section id="work" className="mx-auto max-w-7xl px-6 py-28">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-              Selected Work
-            </p>
-
-            <h2 className="max-w-4xl text-5xl font-black tracking-[-0.04em] md:text-6xl">
-              Projects Designed To Perform.
-            </h2>
-          </div>
-
-          <Link
-            href="/work"
-            className="w-fit rounded-2xl border border-black/10 bg-white px-7 py-4 font-bold shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-          >
-            View All Work
-          </Link>
+        <div className="agency-summary"><p>We combine sharp positioning, premium design and reliable development to turn your website into a serious growth channel.</p><Link href="/contact" className="agency-button">Start a project</Link></div>
+        <div className="agency-stats">
+          <div><strong>10</strong><span>High-value industries</span></div>
+          <div><strong>01</strong><span>Accountable team</span></div>
+          <div><strong>USA</strong><span>Nationwide focus</span></div>
         </div>
+      </motion.div>
+      <div className="agency-services">
+        {[
+          ["Strategy & UX","01","Positioning, conversion paths and interfaces built around how your customers choose."],
+          ["Custom Development","02","Fast, responsive websites engineered for credibility, performance and growth."],
+          ["Growth Systems","03","CRM, analytics, booking and ongoing improvements connected into one system."],
+        ].map(([title,n,copy],i)=><motion.article {...reveal} key={title} className={i===0?"featured":""}><div><h3>{title}</h3><span>{n}</span></div><p>{copy}</p><a href="#services">Learn more</a></motion.article>)}
+      </div>
+    </div></section>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          <Link
-            href="/work/devilsales-auto"
-            className="group overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl shadow-black/5 transition hover:-translate-y-2 hover:shadow-2xl"
-          >
-            <div className="h-64 overflow-hidden border-b border-zinc-200">
-              <img
-                src="/images/devilsales-home.png"
-                alt="DevilSales Auto"
-                className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-              />
-            </div>
+    <section id="services" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
+      <motion.div {...reveal} className="flex flex-col justify-between gap-8 border-b border-white/15 pb-12 md:flex-row md:items-end"><div><p className="section-kicker">[ Capabilities ]</p><h2 className="mt-6 text-6xl font-medium tracking-[-.055em] text-white md:text-8xl">Built as one system.</h2></div><p className="max-w-md text-lg leading-7 text-white/45">Creative ambition and technical discipline, working together from day one.</p></motion.div>
+      <div>{capabilities.map(([n,t,d])=><motion.div {...reveal} key={n} className="cap-row group grid gap-5 border-b border-white/12 py-9 md:grid-cols-[90px_1fr_1fr]"><span>{n}</span><h3 className="text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{t}</h3><p className="max-w-xl leading-7 text-white/42">{d}</p></motion.div>)}</div>
+    </div></section>
 
-            <div className="p-8">
-              <h3 className="text-3xl font-black">DevilSales Auto</h3>
-              <p className="mt-3 text-zinc-600">Luxury Automotive Platform</p>
-              <p className="mt-8 text-sm font-bold text-zinc-500 group-hover:text-black">
-                View Case Study →
-              </p>
-            </div>
-          </Link>
+    <section id="work" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
+      <motion.div {...reveal} className="mb-16"><p className="section-kicker">[ Selected concepts ]</p><h2 className="mt-6 max-w-5xl text-6xl font-medium leading-none tracking-[-.055em] text-white md:text-8xl lg:text-[110px]">Different industries.<br/><span className="text-white/28">One standard.</span></h2></motion.div>
+      <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className="work-card group">
+        <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${title} website`} className="portfolio-frame relative block overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></a>
+        <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference · Not our client work</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
+      </motion.article>)}</div>
+    </div></section>
 
-          {[
-            ["Elite Estates", "Luxury Real Estate Experience"],
-            ["Apex Legal", "Premium Law Firm Transformation"],
-          ].map(([title, subtitle]) => (
-            <div
-              key={title}
-              className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl shadow-black/5 opacity-80"
-            >
-              <div className="flex h-64 items-center justify-center bg-zinc-100">
-                <p className="text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
-                  Coming Soon
-                </p>
-              </div>
+    <section id="process" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px] rounded-[42px] bg-[#f0edff] p-7 text-[#11052f] md:p-16">
+      <motion.div {...reveal} className="grid gap-12 md:grid-cols-2"><div><p className="section-kicker !text-[#6d35dc]">[ Our process ]</p><h2 className="mt-6 text-6xl font-medium leading-none tracking-[-.055em] md:text-8xl">Clear thinking.<br/>Fast movement.</h2></div><div>{[["01","Discover"],["02","Position"],["03","Design"],["04","Develop"],["05","Launch & grow"]].map(([n,t])=><div key={n} className="flex items-center justify-between border-b border-[#11052f]/15 py-5"><span className="text-xs opacity-50">{n}</span><span className="text-2xl font-medium md:text-3xl">{t}</span><span>↗</span></div>)}</div></motion.div>
+    </div></section>
 
-              <div className="p-8">
-                <h3 className="text-3xl font-black">{title}</h3>
-                <p className="mt-3 text-zinc-600">{subtitle}</p>
-                <p className="mt-8 text-sm font-bold text-zinc-500">
-                  Case Study In Progress
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section id="process" className="mx-auto max-w-7xl px-6 py-28">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-          Process
-        </p>
-
-        <h2 className="max-w-4xl text-5xl font-black tracking-[-0.04em] md:text-6xl">
-          The DevilSales Method.
-        </h2>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-5">
-          {process.map((step, index) => (
-            <motion.div
-              key={step}
-              whileHover={{ y: -8 }}
-              className="rounded-[2rem] border border-black/10 bg-white p-8 text-center shadow-xl shadow-black/5"
-            >
-              <p className="text-sm font-bold text-zinc-400">0{index + 1}</p>
-              <h3 className="mt-3 text-2xl font-black">{step}</h3>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section
-        id="contact"
-        className="relative overflow-hidden bg-black px-6 py-32 text-white"
-      >
-        <div className="absolute left-1/2 top-20 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-blue-500/30 blur-[140px]" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-400">
-            Free Audit
-          </p>
-
-          <h2 className="max-w-4xl text-5xl font-black leading-tight tracking-[-0.04em] md:text-6xl">
-            Get A Free 60-Second Video Audit.
-          </h2>
-
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-zinc-300">
-            We will identify the biggest conversion leaks on your website and
-            show exactly where revenue is being lost.
-          </p>
-
-          <div className="mt-12">
-            <Link
-              href="/contact"
-              className="rounded-2xl bg-white px-8 py-4 font-bold text-black transition hover:-translate-y-1 hover:opacity-90"
-            >
-              Request My Audit
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  );
+    <section className="relative px-5 py-36 text-center md:px-10 md:py-52"><div className="purple-glow cta-glow"/><motion.div {...reveal} className="relative mx-auto max-w-6xl"><p className="section-kicker">[ Projects from $10,000 ]</p><h2 className="mt-7 text-6xl font-medium leading-[.9] tracking-[-.065em] text-white md:text-8xl lg:text-[132px]">Ready to become impossible to ignore?</h2><Link className="mixar-button fill mt-12" href="/contact">Let&apos;s talk ↗</Link></motion.div></section>
+    <Footer/>
+  </main>;
 }
+
+function BrowserTop(){return <div className="flex h-8 items-center gap-1.5 border-b border-white/10 px-3"><i/><i/><i/><span>devilsales.web</span></div>}
