@@ -75,6 +75,7 @@ export default function DevilSalesAutoCaseStudy() {
             height={772}
             sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
             quality={70}
+            unoptimized
             className="w-full object-cover"
             priority
           />
@@ -137,6 +138,8 @@ export default function DevilSalesAutoCaseStudy() {
             height={766}
             sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
             quality={70}
+            loading="eager"
+            unoptimized
             className="w-full object-cover"
           />
         </div>
@@ -190,6 +193,8 @@ export default function DevilSalesAutoCaseStudy() {
             height={727}
             sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
             quality={70}
+            loading="eager"
+            unoptimized
             className="w-full object-cover"
           />
         </div>
