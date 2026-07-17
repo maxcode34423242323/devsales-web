@@ -1,26 +1,4 @@
 "use client";
-
 import Link from "next/link";
-import { useState } from "react";
-
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const links = [["Expertise", "/#services"], ["Selected work", "/#work"], ["Process", "/#process"], ["Contact", "/contact"]];
-
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#151614]/80 text-[#f3efe6] backdrop-blur-xl">
-      <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 md:px-10">
-        <Link href="/" className="flex items-center gap-3 font-black tracking-[-.04em]">
-          <span className="grid h-8 w-8 place-items-center border border-[#bca579] text-sm font-normal">D</span>
-          <span className="text-sm tracking-[.06em]">DEVILSALES<span className="font-normal text-[#bca579]"> / WEB</span></span>
-        </Link>
-        <nav className="hidden items-center gap-9 text-[12px] font-bold uppercase tracking-[.14em] text-white/65 md:flex">
-          {links.map(([label, href]) => <Link key={label} href={href} className="transition hover:text-white">{label}</Link>)}
-        </nav>
-        <Link href="/contact" className="hidden border border-[#bca579]/60 px-5 py-3 text-[10px] font-bold uppercase tracking-[.16em] transition hover:bg-[#bca579] hover:text-black md:block">Start a project ↗</Link>
-        <button onClick={() => setOpen(!open)} className="text-xs font-black uppercase tracking-widest md:hidden" aria-expanded={open}>Menu</button>
-      </div>
-      {open && <nav className="border-t border-white/10 bg-[#151614] px-5 py-5 md:hidden">{links.map(([label, href]) => <Link onClick={() => setOpen(false)} key={label} href={href} className="block border-b border-white/10 py-4 text-xl font-bold">{label}</Link>)}</nav>}
-    </header>
-  );
-}
+import {useState} from "react";
+export default function Navbar(){const[open,setOpen]=useState(false);const links=[["Expertise","/#services"],["Work","/#work"],["Process","/#process"],["Contact","/contact"]];return <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6"><div className="mx-auto flex h-[72px] max-w-[1450px] items-center justify-between rounded-[22px] border border-white/10 bg-[#3d3263]/75 px-5 text-white shadow-2xl shadow-black/15 backdrop-blur-2xl md:px-8"><nav className="hidden items-center gap-7 text-[10px] font-bold uppercase tracking-[.14em] text-white/65 md:flex">{links.slice(0,2).map(([l,h])=><Link key={l} href={h} className="transition hover:text-white">{l}</Link>)}</nav><Link href="/" className="flex items-center gap-3 font-black tracking-[-.04em]"><span className="logo-mark">D</span><span className="hidden text-xs tracking-[.12em] sm:block">DEVILSALES</span></Link><nav className="hidden items-center gap-7 text-[10px] font-bold uppercase tracking-[.14em] text-white/65 md:flex">{links.slice(2,3).map(([l,h])=><Link key={l} href={h} className="transition hover:text-white">{l}</Link>)}<Link href="/contact" className="border-b border-white pb-1 text-white">Let&apos;s talk</Link></nav><button onClick={()=>setOpen(!open)} className="text-[10px] font-bold uppercase tracking-widest md:hidden">Menu</button></div>{open&&<nav className="mx-auto mt-2 max-w-[1450px] rounded-[20px] border border-white/10 bg-[#24134d]/95 p-5 text-white backdrop-blur-xl md:hidden">{links.map(([l,h])=><Link onClick={()=>setOpen(false)} className="block border-b border-white/10 py-4 text-xl" href={h} key={l}>{l}</Link>)}</nav>}</header>}
