@@ -22,7 +22,7 @@ export default function DevilSalesAutoCaseStudy() {
   ];
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="case-page min-h-screen">
       <Navbar />
 
       <section className="relative overflow-hidden px-6 pb-24 pt-48">
