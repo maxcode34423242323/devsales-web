@@ -213,10 +213,10 @@ export default function ContactPage() {
             <h2>Let&apos;s build the website your business deserves.</h2>
             <p>Share your goals, current website and timeline. We review every qualified request personally and respond with the most useful next step.</p>
             <div className="contact-direct-card featured"><h3>DevilSales Web</h3><a href="tel:+13155478952"><ContactIcon type="phone"/><span><small>Call us</small>315-547-8952</span></a><a href="mailto:info@devilsales.dev"><ContactIcon type="mail"/><span><small>Email us</small>info@devilsales.dev</span></a><div><ContactIcon type="location"/><span><small>Service area</small>United States · Nationwide</span></div></div>
-            <div className="contact-note"><strong>Minimum engagement: $10,000+</strong><p>Premium custom websites, strategic redesigns and conversion-focused digital infrastructure.</p></div>
           </div>
 
           <form
+            id="project-brief"
             onSubmit={handleSubmit}
             className="contact-form"
           >
@@ -509,6 +509,15 @@ export default function ContactPage() {
             </div>
           </form>
         </div>
+
+        <section className="contact-resources">
+          <div className="contact-resources-heading"><p className="section-kicker">[ Resources ]</p><h2>Everything you need to make the right next move.</h2><p>Explore our capabilities, understand project investment and review visual references for your industry.</p></div>
+          <div className="contact-resource-grid">
+            <Link href="/#services" className="contact-resource-card"><ResourceIcon type="services"/><h3>Services</h3><p>Explore strategy, UI/UX design, custom development and connected growth systems.</p><span>Explore services ↗</span></Link>
+            <Link href="/contact#project-brief" className="contact-resource-card"><ResourceIcon type="investment"/><h3>Project Investment</h3><p>Choose the budget range, timeline and scope that best matches your business goals.</p><span>Plan your project ↗</span></Link>
+            <Link href="/work" className="contact-resource-card"><ResourceIcon type="portfolio"/><h3>Portfolio</h3><p>Review real US-market website references across ten high-value service industries.</p><span>View portfolio ↗</span></Link>
+          </div>
+        </section>
       </section>
 
       <Footer />
@@ -520,4 +529,10 @@ function ContactIcon({type}:{type:"phone"|"mail"|"location"}) {
   if(type==="phone") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.2 3.5 10 7.8 8.3 10c1.2 2.5 3.2 4.5 5.7 5.7l2.2-1.7 4.3 2.8-.7 3.2c-.2.8-.9 1.4-1.8 1.4C9.5 21.4 2.6 14.5 2.6 6c0-.9.6-1.6 1.4-1.8l3.2-.7Z"/></svg></span>;
   if(type==="mail") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>;
   return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>;
+}
+
+function ResourceIcon({type}:{type:"services"|"investment"|"portfolio"}) {
+  if(type==="services") return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="8" cy="7" r="1.5"/><circle cx="16" cy="12" r="1.5"/><circle cx="10" cy="17" r="1.5"/></svg></span>;
+  if(type==="investment") return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v5c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg></span>;
+  return <span className="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>;
 }
