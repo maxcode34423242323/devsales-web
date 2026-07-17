@@ -3,13 +3,13 @@ import Footer from "../components/Footer";
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="legal-page">
       <Navbar />
 
-      <section className="mx-auto max-w-5xl px-6 pb-32 pt-48">
+      <section className="legal-shell">
         <h1 className="text-5xl font-bold">Terms of Service</h1>
 
-        <div className="mt-12 space-y-8 text-zinc-400 leading-8">
+        <div className="legal-copy space-y-8">
           <p>
             By accessing this website you agree to these Terms of Service.
           </p>
