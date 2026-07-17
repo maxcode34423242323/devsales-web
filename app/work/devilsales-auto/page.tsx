@@ -26,8 +26,8 @@ export default function DevilSalesAutoCaseStudy() {
       <Navbar />
 
       <section className="relative overflow-hidden px-6 pb-24 pt-48">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[140px]" />
-        <div className="absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-purple-200 opacity-40 blur-[120px]" />
+        <div className="case-ambient absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[140px]" />
+        <div className="case-ambient absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-purple-200 opacity-40 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl">
           <Link
@@ -69,10 +69,12 @@ export default function DevilSalesAutoCaseStudy() {
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-2xl">
           <Image
-            src="/images/devilsales-home.png"
+            src="/images/devilsales-home.webp"
             alt="DevilSales Auto homepage"
-            width={1600}
-            height={900}
+            width={1200}
+            height={772}
+            sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
+            quality={70}
             className="w-full object-cover"
             priority
           />
@@ -129,10 +131,12 @@ export default function DevilSalesAutoCaseStudy() {
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-2xl">
           <Image
-            src="/images/devilsales-car.png"
+            src="/images/devilsales-car.webp"
             alt="DevilSales Auto vehicle page"
-            width={1600}
-            height={900}
+            width={1200}
+            height={766}
+            sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
+            quality={70}
             className="w-full object-cover"
           />
         </div>
@@ -180,10 +184,12 @@ export default function DevilSalesAutoCaseStudy() {
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-2xl">
           <Image
-            src="/images/devilsales-lead.png"
+            src="/images/devilsales-lead.webp"
             alt="DevilSales Auto lead generation form"
-            width={1600}
-            height={900}
+            width={1200}
+            height={727}
+            sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
+            quality={70}
             className="w-full object-cover"
           />
         </div>
@@ -233,7 +239,7 @@ export default function DevilSalesAutoCaseStudy() {
       </section>
 
       <section className="relative overflow-hidden border-t border-zinc-200 bg-zinc-50 px-6 py-32">
-        <div className="absolute left-1/2 top-20 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[120px]" />
+        <div className="case-ambient absolute left-1/2 top-20 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-blue-200 opacity-40 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl">
           <h2 className="max-w-4xl text-5xl font-bold leading-tight tracking-tight text-black">
@@ -264,7 +270,7 @@ export default function DevilSalesAutoCaseStudy() {
         </div>
       </section>
 
-      <Footer />
+      <Footer compact />
     </main>
   );
 }
