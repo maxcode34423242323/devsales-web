@@ -17,10 +17,10 @@ const questions = [
 ];
 
 export default function FaqPage(){
-  const [open,setOpen]=useState<number|null>(0);
+  const [open,setOpen]=useState<number|null>(null);
   return <main className="faq-page"><Navbar/>
     <section className="faq-hero"><p className="section-kicker">[ Answers before we begin ]</p><h1>Frequently Asked Questions</h1><p>Clear answers about scope, process, timing and what it&apos;s like to work with DevilSales.</p></section>
-    <section className="faq-shell"><div className="faq-heading"><p className="section-kicker">[ The essentials ]</p><h2>The most common questions.</h2></div><div className="faq-grid">{questions.map(([q,a],i)=><article key={q} className={open===i?"open":""}><button onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i}><span>{q}</span><i>{open===i?"−":"+"}</i></button><AnimatePresence initial={false}>{open===i&&<motion.div initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} transition={{duration:.32}}><p>{a}</p></motion.div>}</AnimatePresence></article>)}</div></section>
+    <section className="faq-shell"><div className="faq-heading"><p className="section-kicker">[ The essentials ]</p><h2>The most common questions.</h2></div><div className="faq-grid">{questions.map(([q,a],i)=><article key={q} className={`faq-item ${open===i?"open":""}`}><button className="faq-question" onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i}><span>{q}</span><i aria-hidden="true" /></button><AnimatePresence initial={false}>{open===i&&<motion.div className="faq-answer" initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} transition={{duration:.32}}><p>{a}</p></motion.div>}</AnimatePresence></article>)}</div></section>
     <Footer/>
   </main>
 }
