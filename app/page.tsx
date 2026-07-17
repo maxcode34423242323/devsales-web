@@ -7,11 +7,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const projects = [
-  ["Personal Injury Law", "Apex Injury", "/images/apex-legal.png"], ["Plastic Surgery", "Maison Aesthetics", "/images/devilsales-home.png"],
-  ["Cosmetic Dentistry", "Ivory Dental", "/images/devilsales-lead.png"], ["Roofing", "Summit Roofing", "/images/elite-estates.png"],
-  ["HVAC", "Northstar Climate", "/images/devilsales-car.png"], ["Home Remodeling", "Atelier Build", "/images/devilsales-home.png"],
-  ["Luxury Home Builders", "Monument Homes", "/images/elite-estates.png"], ["Medical Spa", "Élan Med Spa", "/images/devilsales-lead.png"],
-  ["Restoration", "Revive Property", "/images/apex-legal.png"], ["Commercial Landscaping", "Terra Commercial", "/images/elite-estates.png"],
+  ["Personal Injury Law", "Omar Ochoa Law", "/images/apex-legal.png", "https://omarochoalaw.com"], ["Plastic Surgery", "Maryland Plastic Surgery", "/images/devilsales-home.png", "https://mdcosmetic.com"],
+  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/devilsales-lead.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/elite-estates.png", "https://www.yurasroofing.com"],
+  ["HVAC", "Comfort Systems USA", "/images/devilsales-car.png", "https://comfortsystemsusa.com"], ["Home Remodeling", "Blue Divide", "/images/devilsales-home.png", "https://bluedivide.com"],
+  ["Luxury Home Builders", "DWELL44", "/images/elite-estates.png", "https://dwell44.com"], ["Medical Spa", "LIV Wellness Lounge", "/images/devilsales-lead.png", "https://livwellnesslounge.com"],
+  ["Restoration", "FIRST ONSITE", "/images/apex-legal.png", "https://firstonsite.com"], ["Commercial Landscaping", "Blakedown Landscapes", "/images/elite-estates.png", "https://www.blakedown.co.uk"],
 ];
 const capabilities = [
   ["01", "Strategy", "Positioning, audience research and a conversion path built around the way your customers choose."],
@@ -62,9 +62,9 @@ export default function Home(){
 
     <section id="work" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
       <motion.div {...reveal} className="mb-16"><p className="section-kicker">[ Selected concepts ]</p><h2 className="mt-6 max-w-5xl text-6xl font-medium leading-none tracking-[-.055em] text-white md:text-8xl lg:text-[110px]">Different industries.<br/><span className="text-white/28">One standard.</span></h2></motion.div>
-      <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img],i)=><motion.article {...reveal} key={title} className={`work-card group ${i===0||i===5?"md:col-span-2":""}`}>
+      <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className={`work-card group ${i===0||i===5?"md:col-span-2":""}`}>
         <div className={`relative overflow-hidden ${i===0||i===5?"aspect-[16/7]":"aspect-[4/3]"}`}><Image src={img} alt={`${title} industry website concept`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.04]"/><div className="work-shade"/><span className="concept-pill">Concept 0{i+1}</span></div>
-        <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">{cat}</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3></div><span className="project-arrow">↗</span></div>
+        <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference · Not our client work</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
       </motion.article>)}</div>
     </div></section>
 
