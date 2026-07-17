@@ -459,17 +459,17 @@ export default function ContactPage() {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
+              <div className={`consent-card ${form.smsConsent ? "checked" : ""}`}>
                 <label className="flex cursor-pointer items-start gap-3">
                   <input
                     name="smsConsent"
                     type="checkbox"
                     checked={form.smsConsent}
                     onChange={handleChange}
-                    className="mt-1 h-5 w-5 shrink-0 accent-black"
+                    className="consent-checkbox"
                   />
 
-                  <span className="text-sm leading-6 text-zinc-700">
+                  <span className="text-sm leading-6 text-white/65">
                     By checking this box and submitting this form, I agree to
                     receive SMS messages from DEVILSALES regarding my inquiry,
                     quotations, appointment scheduling, project updates,
@@ -518,7 +518,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading || !form.smsConsent}
-                className="bg-[#2557ff] px-8 py-5 font-black uppercase tracking-wider text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-full bg-[#6100ff] px-8 py-5 font-medium uppercase tracking-wider text-white transition hover:bg-white hover:text-[#6100ff] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {loading ? "Sending..." : "Submit Project Request"}
               </button>
