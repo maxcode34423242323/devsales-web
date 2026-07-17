@@ -45,13 +45,26 @@ export default function Home(){
 
     <div className="ticker"><div>DESIGN THAT EARNS ATTENTION&nbsp; ✦ &nbsp;DEVELOPMENT THAT PERFORMS&nbsp; ✦ &nbsp;SYSTEMS THAT CREATE PIPELINE&nbsp; ✦ &nbsp;DESIGN THAT EARNS ATTENTION&nbsp; ✦ &nbsp;DEVELOPMENT THAT PERFORMS&nbsp; ✦ &nbsp;</div></div>
 
-    <section className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
-      <motion.div {...reveal} className="grid gap-10 md:grid-cols-[.75fr_1.25fr]"><p className="section-kicker">[ Why DevilSales ]</p><h2 className="text-6xl font-medium leading-[.98] tracking-[-.055em] text-white md:text-8xl lg:text-[112px]">We turn credibility into a competitive advantage.</h2></motion.div>
-      <div className="mt-20 grid gap-4 md:grid-cols-12">
-        <motion.div {...reveal} className="bento-card min-h-[360px] md:col-span-7"><p className="section-kicker">Our approach</p><h3 className="mt-auto max-w-2xl text-4xl font-medium leading-tight tracking-[-.04em] md:text-6xl">Not decoration.<br/><span className="text-white/35">A sharper business tool.</span></h3><div className="bento-orb"/></motion.div>
-        <motion.div {...reveal} className="bento-card min-h-[360px] md:col-span-5"><span className="text-[120px] font-medium leading-none tracking-[-.09em] text-white">10</span><p className="mt-auto max-w-xs text-lg leading-7 text-white/50">High-value industries explored through tailored digital concepts.</p></motion.div>
-        <motion.div {...reveal} className="bento-card min-h-[280px] md:col-span-4"><p className="section-kicker">End-to-end</p><div className="mt-auto"><p className="text-3xl text-white">One accountable team.</p><p className="mt-3 text-white/45">Strategy through launch and beyond.</p></div></motion.div>
-        <motion.div {...reveal} className="bento-card purple-card min-h-[280px] md:col-span-8"><p className="section-kicker text-white/60">Built to convert</p><p className="mt-auto max-w-3xl text-4xl font-medium leading-tight tracking-[-.04em] md:text-6xl">Every screen has a commercial reason to exist.</p></motion.div>
+    <section className="mixar-intro px-5 py-28 md:px-10 md:py-36"><div className="mx-auto max-w-[1450px]">
+      <motion.div {...reveal} className="agency-stage">
+        <div className="agency-flow" aria-hidden="true"><i/><i/><i/></div>
+        <div className="agency-copy">
+          <p className="section-kicker !text-white/65">[ US digital studio ]</p>
+          <h2>High-converting websites for ambitious service businesses.</h2>
+        </div>
+        <div className="agency-summary"><p>We combine sharp positioning, premium design and reliable development to turn your website into a serious growth channel.</p><Link href="/contact" className="agency-button">Start a project</Link></div>
+        <div className="agency-stats">
+          <div><strong>10</strong><span>High-value industries</span></div>
+          <div><strong>01</strong><span>Accountable team</span></div>
+          <div><strong>USA</strong><span>Nationwide focus</span></div>
+        </div>
+      </motion.div>
+      <div className="agency-services">
+        {[
+          ["Strategy & UX","01","Positioning, conversion paths and interfaces built around how your customers choose."],
+          ["Custom Development","02","Fast, responsive websites engineered for credibility, performance and growth."],
+          ["Growth Systems","03","CRM, analytics, booking and ongoing improvements connected into one system."],
+        ].map(([title,n,copy],i)=><motion.article {...reveal} key={title} className={i===0?"featured":""}><div><h3>{title}</h3><span>{n}</span></div><p>{copy}</p><a href="#services">Learn more</a></motion.article>)}
       </div>
     </div></section>
 
@@ -63,7 +76,7 @@ export default function Home(){
     <section id="work" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
       <motion.div {...reveal} className="mb-16"><p className="section-kicker">[ Selected concepts ]</p><h2 className="mt-6 max-w-5xl text-6xl font-medium leading-none tracking-[-.055em] text-white md:text-8xl lg:text-[110px]">Different industries.<br/><span className="text-white/28">One standard.</span></h2></motion.div>
       <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className="work-card group">
-        <div className="portfolio-frame relative overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></div>
+        <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${title} website`} className="portfolio-frame relative block overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></a>
         <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference · Not our client work</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
       </motion.article>)}</div>
     </div></section>
