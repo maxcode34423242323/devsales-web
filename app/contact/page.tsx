@@ -92,9 +92,9 @@ export default function ContactPage() {
 
     if (!form.phone.trim()) {
       newErrors.phone = "Phone number with country code is required.";
-    } else if (!/^\+[1-9]\d{1,3}[\s\d]{6,18}$/.test(form.phone.trim())) {
+    } else if (!/^\+1[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(form.phone.trim())) {
       newErrors.phone =
-        "Enter a valid US phone number. Example: 315-547-8952";
+        "Enter a valid US phone number with country code. Example: +1 315 547 8952";
     }
 
     if (!form.companyWebsite.trim()) {
@@ -200,44 +200,28 @@ export default function ContactPage() {
     <main className="inner-page">
       <Navbar />
 
-      <section className="relative overflow-hidden px-5 pb-32 pt-40 md:px-10 md:pt-48">
+      <section className="contact-page-shell">
+        <div className="contact-hero">
+          <div className="agency-flow" aria-hidden="true"><i/><i/><i/></div>
+          <div className="contact-hero-copy"><p className="section-kicker !text-white/65">[ Start a project ]</p><h1>Contact Us</h1><p>Tell us where your business is today and where you want it to go. We&apos;ll turn that context into a clear next step.</p></div>
+          <div className="contact-hero-stats"><div><strong>USA</strong><span>Nationwide focus</span></div><div><strong>$10K+</strong><span>Project engagement</span></div><div><strong>10</strong><span>High-value industries</span></div><div><strong>01</strong><span>Accountable team</span></div></div>
+        </div>
 
-        <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="section-kicker mb-6">
-              Start A Project
-            </p>
-
-            <h1 className="max-w-3xl text-6xl font-light leading-[.95] text-white md:text-[60px]">
-              Let&apos;s build the website your business deserves.
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-lg leading-[25.2px] text-white/60">
-              Tell us about your company, your current digital infrastructure
-              and what you want to improve. We&apos;ll review the details and
-              respond with the next best step.
-            </p>
-
-            <div className="mt-12 rounded-[10px] border border-white/12 bg-[#160045] p-8">
-              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-                Minimum Engagement
-              </p>
-
-              <p className="mt-4 text-4xl font-light text-white">$10,000+</p>
-
-              <p className="mt-4 leading-7 text-white/55">
-                We work with ambitious companies that need premium websites,
-                custom websites, redesigns and conversion-focused digital
-                infrastructure.
-              </p>
-            </div>
+        <div className="contact-main">
+          <div className="contact-side">
+            <p className="section-kicker">[ Get in touch ]</p>
+            <h2>Let&apos;s build the website your business deserves.</h2>
+            <p>Share your goals, current website and timeline. We review every qualified request personally and respond with the most useful next step.</p>
+            <div className="contact-direct-card featured"><h3>DevilSales Web</h3><a href="tel:+13155478952"><ContactIcon type="phone"/><span><small>Call us</small>315-547-8952</span></a><a href="mailto:info@devilsales.dev"><ContactIcon type="mail"/><span><small>Email us</small>info@devilsales.dev</span></a><div><ContactIcon type="location"/><span><small>Service area</small>United States · Nationwide</span></div></div>
+            <div className="contact-note"><strong>Minimum engagement: $10,000+</strong><p>Premium custom websites, strategic redesigns and conversion-focused digital infrastructure.</p></div>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-[20px] border border-white/12 bg-[#160045] p-6 shadow-[18px_18px_0_#6100ff] md:p-10"
+            className="contact-form"
           >
-            <div className="grid gap-6">
+            <div className="contact-form-heading"><p className="section-kicker">[ Project brief ]</p><h2>Send us a message</h2><p>Fields marked with * are required.</p></div>
+            <div className="contact-form-grid">
               <div>
                 <label className={labelClass}>Full Name *</label>
                 <input
@@ -292,7 +276,7 @@ export default function ContactPage() {
                   type="tel"
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="315-547-8952"
+                  placeholder="+1 315 547 8952"
                   className={inputClass}
                 />
                 {errors.phone && (
@@ -322,7 +306,7 @@ export default function ContactPage() {
                   type="text"
                   value={form.country}
                   onChange={handleChange}
-                  placeholder="Germany, UAE, United Kingdom..."
+                  placeholder="New York, California, United States..."
                   className={inputClass}
                 />
                 {errors.country && (
@@ -443,7 +427,7 @@ export default function ContactPage() {
                 </select>
               </div>
 
-              <div>
+              <div className="contact-span">
                 <label className={labelClass}>Project Details *</label>
                 <textarea
                   name="projectDetails"
@@ -459,7 +443,7 @@ export default function ContactPage() {
                 )}
               </div>
 
-              <div className={`consent-card ${form.smsConsent ? "checked" : ""}`}>
+              <div className={`consent-card contact-span ${form.smsConsent ? "checked" : ""}`}>
                 <label className="flex cursor-pointer items-start gap-3">
                   <input
                     name="smsConsent"
@@ -503,13 +487,13 @@ export default function ContactPage() {
               </div>
 
               {serverError && (
-                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+                <div className="contact-span rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
                   {serverError}
                 </div>
               )}
 
               {success && (
-                <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+                <div className="contact-span rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
                   Your request has been sent successfully. We will review your
                   project and contact you shortly.
                 </div>
@@ -518,7 +502,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading || !form.smsConsent}
-                className="rounded-full bg-[#6100ff] px-8 py-5 font-medium uppercase tracking-wider text-white transition hover:bg-white hover:text-[#6100ff] disabled:cursor-not-allowed disabled:opacity-40"
+                className="contact-span rounded-full bg-white px-8 py-5 font-medium uppercase tracking-wider text-[#6100ff] transition hover:bg-[#8b4dff] hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {loading ? "Sending..." : "Submit Project Request"}
               </button>
@@ -530,4 +514,10 @@ export default function ContactPage() {
       <Footer />
     </main>
   );
+}
+
+function ContactIcon({type}:{type:"phone"|"mail"|"location"}) {
+  if(type==="phone") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.2 3.5 10 7.8 8.3 10c1.2 2.5 3.2 4.5 5.7 5.7l2.2-1.7 4.3 2.8-.7 3.2c-.2.8-.9 1.4-1.8 1.4C9.5 21.4 2.6 14.5 2.6 6c0-.9.6-1.6 1.4-1.8l3.2-.7Z"/></svg></span>;
+  if(type==="mail") return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>;
+  return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>;
 }
