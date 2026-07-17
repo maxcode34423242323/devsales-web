@@ -44,7 +44,7 @@ export default function SmsPolicyPage() {
                 info@devilsales.dev
               </a>
               <br />
-              Phone: +39 334 207 0234
+              Phone: 315-547-8952
             </p>
           </section>
 

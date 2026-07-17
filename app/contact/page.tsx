@@ -94,7 +94,7 @@ export default function ContactPage() {
       newErrors.phone = "Phone number with country code is required.";
     } else if (!/^\+[1-9]\d{1,3}[\s\d]{6,18}$/.test(form.phone.trim())) {
       newErrors.phone =
-        "Enter a valid phone number with country code. Example: +39 334 207 0234";
+        "Enter a valid US phone number. Example: 315-547-8952";
     }
 
     if (!form.companyWebsite.trim()) {
@@ -292,7 +292,7 @@ export default function ContactPage() {
                   type="tel"
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="+39 334 207 0234"
+                  placeholder="315-547-8952"
                   className={inputClass}
                 />
                 {errors.phone && (

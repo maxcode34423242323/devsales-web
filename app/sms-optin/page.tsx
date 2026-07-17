@@ -22,7 +22,7 @@ export default function SmsOptinPage() {
           <br />
           Email: info@devilsales.dev
           <br />
-          Phone: +39 334 207 0234
+          Phone: 315-547-8952
         </p>
 
         <h2 className="text-2xl font-semibold mb-4">About Us</h2>

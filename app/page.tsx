@@ -7,10 +7,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const projects = [
-  ["Personal Injury Law", "Omar Ochoa Law", "/images/reference-omar-law.png", "https://www.omarochoalaw.com"], ["Plastic Surgery", "Austin-Weston", "/images/reference-austin-plastic.png", "https://www.austin-weston.com"],
-  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/reference-apa-aesthetic.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/reference-yuras-roofing.png", "https://www.yurasroofing.com"],
-  ["HVAC", "Comfort Systems USA", "/images/reference-comfort-systems.png", "https://comfortsystemsusa.com"], ["Home Remodeling", "Excel Remodeling", "/images/reference-excel-remodeling.png", "https://www.excelremodeling.com"],
-  ["Luxury Home Builders", "DWELL44", "/images/reference-dwell44.png", "https://dwell44.com"], ["Medical Spa", "SkinSpirit", "/images/reference-skinspirit.png", "https://www.skinspirit.com"],
+  ["Personal Injury Law", "Omar Ochoa Law", "/images/reference-omar-better.jpg", "https://www.omarochoalaw.com"], ["Plastic Surgery", "Austin-Weston", "/images/reference-austin-plastic.png", "https://www.austin-weston.com"],
+  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/reference-apa-aesthetic.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/reference-yuras-better.jpg", "https://www.yurasroofing.com"],
+  ["HVAC", "Comfort Systems USA", "/images/reference-comfort-better.jpg", "https://comfortsystemsusa.com"], ["Home Remodeling", "Excel Remodeling", "/images/reference-excel-better.jpg", "https://www.excelremodeling.com"],
+  ["Luxury Home Builders", "DWELL44", "/images/reference-dwell44-better.jpg", "https://dwell44.com/blogs/portfolio"], ["Medical Spa", "SkinSpirit", "/images/reference-skinspirit.png", "https://www.skinspirit.com"],
   ["Restoration", "FIRST ONSITE", "/images/reference-first-onsite.png", "https://firstonsite.com"], ["Commercial Landscaping", "BrightView", "/images/reference-brightview.png", "https://www.brightview.com"],
 ];
 const capabilities = [
@@ -29,7 +29,7 @@ export default function Home(){
     <section className="relative min-h-[980px] px-5 pb-24 pt-36 md:px-10 md:pt-44">
       <div className="purple-glow glow-one"/><div className="purple-glow glow-two"/>
       <div className="relative mx-auto max-w-[1450px]">
-        <motion.div initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="mb-12 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.24em] text-white/45"><span className="h-2 w-2 rounded-full bg-[#9b5cff] shadow-[0_0_18px_#9b5cff]"/>Independent digital studio · Italy / USA</motion.div>
+        <motion.div initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="mb-12 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.24em] text-white/45"><span className="h-2 w-2 rounded-full bg-[#9b5cff] shadow-[0_0_18px_#9b5cff]"/>US-focused digital studio · Serving businesses nationwide</motion.div>
         <motion.h1 initial={{opacity:0,y:65}} animate={{opacity:1,y:0}} transition={{duration:1,ease:[.22,1,.36,1]}} className="max-w-[1320px] text-[16vw] font-medium leading-[.85] tracking-[-.07em] text-white md:text-[132px] lg:text-[170px]">Digital experiences for <span className="gradient-word">serious growth.</span></motion.h1>
         <div className="mt-14 grid gap-10 border-t border-white/12 pt-8 md:grid-cols-[1.25fr_.75fr] md:items-end">
           <motion.p {...reveal} className="max-w-2xl text-xl leading-8 text-white/55 md:text-2xl">Strategy, design and development for service businesses ready to become the obvious choice in their market.</motion.p>
@@ -62,8 +62,8 @@ export default function Home(){
 
     <section id="work" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1450px]">
       <motion.div {...reveal} className="mb-16"><p className="section-kicker">[ Selected concepts ]</p><h2 className="mt-6 max-w-5xl text-6xl font-medium leading-none tracking-[-.055em] text-white md:text-8xl lg:text-[110px]">Different industries.<br/><span className="text-white/28">One standard.</span></h2></motion.div>
-      <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className={`work-card group ${i===0||i===5?"md:col-span-2":""}`}>
-        <div className={`relative overflow-hidden ${i===0||i===5?"aspect-[16/7]":"aspect-[4/3]"}`}><Image src={img} alt={`${title} industry website concept`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.04]"/><div className="work-shade"/><span className="concept-pill">Concept 0{i+1}</span></div>
+      <div className="grid gap-5 md:grid-cols-2">{projects.map(([cat,title,img,url],i)=><motion.article {...reveal} key={title} className="work-card group">
+        <div className="portfolio-frame relative overflow-hidden"><Image src={img} alt={`${title} industry website reference`} fill className="object-cover object-top transition duration-[1100ms] group-hover:scale-[1.025]"/><div className="work-shade"/><span className="concept-pill">Reference 0{i+1}</span></div>
         <div className="flex items-end justify-between gap-5 p-6 md:p-8"><div><p className="section-kicker">Industry reference · Not our client work</p><h3 className="mt-3 text-4xl font-medium tracking-[-.04em] text-white md:text-5xl">{title}</h3><p className="mt-2 text-sm text-white/40">{cat}</p></div><a href={url} target="_blank" rel="noreferrer" className="project-arrow">↗</a></div>
       </motion.article>)}</div>
     </div></section>
