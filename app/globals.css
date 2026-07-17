@@ -74,6 +74,12 @@ body{overflow-x:hidden}
   .agency-flow:before,.agency-flow:after,.agency-flow i{animation:none!important}
   .agency-flow i:nth-child(2){display:none}
   .mobile-overlay,.concept-pill,.template-project-image>span,.agency-stats div,.contact-hero-stats>div{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .mix-footer{padding:38px 15px 22px}
+  .footer-cta{padding:48px 0 56px}
+  .footer-cta h2{font-size:40px;line-height:1.02}
+  .footer-talk{width:144px;height:144px;margin-top:18px;font-size:11px}
+  .footer-main{gap:28px;padding:44px 0}
+  .footer-bottom{gap:18px;padding-top:20px}
 }
 
 /* The case study uses a tighter footer and avoids Safari blur-layer flicker. */
@@ -85,7 +91,11 @@ body{overflow-x:hidden}
 @media(max-width:767px){
   .case-page .case-ambient{display:none!important}
   .case-page .backdrop-blur{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-  .case-page section{transform:none!important}
+  .case-page section{max-width:100%;padding-left:18px!important;padding-right:18px!important;transform:none!important}
+  .case-page section:not(:first-of-type){padding-top:56px!important;padding-bottom:56px!important}
+  .case-page h1{font-size:48px!important;line-height:1!important}
+  .case-page h2{font-size:36px!important;line-height:1.08!important}
+  .case-page .p-8{padding:24px!important}
   .mix-footer.compact-footer{padding:32px 15px 22px}
   .compact-footer .footer-cta{padding:36px 0 44px}
   .compact-footer .footer-cta h2{font-size:36px;line-height:1.02}
