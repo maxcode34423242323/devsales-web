@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 type ContactRequestBody = {
   fullName?: string;
@@ -16,10 +15,6 @@ type ContactRequestBody = {
   smsConsent?: boolean;
 };
 
-const CONTACT_EMAIL = "info@devilsales.dev";
-const NEO_SMTP_HOST = "smtp0001.neo.space";
-const NEO_SMTP_PORT = 465;
-
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -28,91 +23,127 @@ function isValidPhone(phone: string) {
   return /^\+1[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(phone.trim());
 }
 
-function escapeHtml(value: unknown) {
+function escapeTelegramHtml(value: unknown) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/>/g, "&gt;");
 }
 
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as ContactRequestBody;
     const requiredFields: Array<keyof ContactRequestBody> = [
-      "fullName", "companyName", "businessEmail", "phone", "country",
-      "industry", "serviceNeeded", "budget", "projectDetails",
+      "fullName",
+      "companyName",
+      "businessEmail",
+      "phone",
+      "country",
+      "industry",
+      "serviceNeeded",
+      "budget",
+      "projectDetails",
     ];
 
     for (const field of requiredFields) {
       if (!body[field] || !String(body[field]).trim()) {
-        return NextResponse.json({ success: false, error: `Missing required field: ${field}` }, { status: 400 });
+        return NextResponse.json(
+          { success: false, error: `Missing required field: ${field}` },
+          { status: 400 },
+        );
       }
     }
 
     if (!isValidEmail(String(body.businessEmail))) {
-      return NextResponse.json({ success: false, error: "Invalid email address." }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Invalid email address." },
+        { status: 400 },
+      );
     }
 
     if (!isValidPhone(String(body.phone))) {
-      return NextResponse.json({ success: false, error: "Invalid US phone number. Include +1, for example +1 315 547 8952." }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid US phone number. Include +1, for example +1 315 547 8952.",
+        },
+        { status: 400 },
+      );
     }
 
     if (body.smsConsent !== true) {
-      return NextResponse.json({ success: false, error: "SMS consent is required before submitting this form." }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "SMS consent is required before submitting this form." },
+        { status: 400 },
+      );
     }
 
-    const emailPassword = process.env.NEO_EMAIL_PASSWORD;
-    if (!emailPassword) {
-      console.error("NEO_EMAIL_PASSWORD is missing.");
-      return NextResponse.json({ success: false, error: "Server configuration error." }, { status: 500 });
+    const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim();
+    const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
+
+    if (!botToken || !chatId) {
+      console.error("TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is missing.");
+      return NextResponse.json(
+        { success: false, error: "Server configuration error." },
+        { status: 500 },
+      );
     }
 
-    const rows = [
-      ["Name", body.fullName], ["Company", body.companyName], ["Country", body.country],
-      ["Email", body.businessEmail], ["Phone", body.phone], ["Industry", body.industry],
-      ["Service", body.serviceNeeded], ["Budget", body.budget],
-      ["Company size", body.companySize || "Not provided"],
-      ["Timeline", body.timeline || "Not provided"], ["SMS consent", "YES"],
-    ];
+    const field = (value: unknown) => escapeTelegramHtml(value || "Not provided");
+    const telegramText = [
+      "🔥 <b>New DevilSales Web lead</b>",
+      "",
+      `👤 <b>Name:</b> ${field(body.fullName)}`,
+      `🏢 <b>Company:</b> ${field(body.companyName)}`,
+      `🌎 <b>Country:</b> ${field(body.country)}`,
+      "",
+      `📧 <b>Email:</b> ${field(body.businessEmail)}`,
+      `📱 <b>Phone:</b> ${field(body.phone)}`,
+      "",
+      `🏭 <b>Industry:</b> ${field(body.industry)}`,
+      `🛠 <b>Service:</b> ${field(body.serviceNeeded)}`,
+      `💰 <b>Budget:</b> ${field(body.budget)}`,
+      `👥 <b>Company size:</b> ${field(body.companySize)}`,
+      `⏳ <b>Timeline:</b> ${field(body.timeline)}`,
+      "",
+      "📝 <b>Project details:</b>",
+      field(body.projectDetails),
+      "",
+      "✅ <b>SMS consent:</b> YES",
+      `🕒 <b>Submitted:</b> ${escapeTelegramHtml(new Date().toISOString())}`,
+    ].join("\n");
 
-    const html = `
-      <div style="font-family:Arial,sans-serif;max-width:680px;margin:auto;color:#171126">
-        <div style="background:#160045;color:#fff;padding:28px 32px;border-radius:16px 16px 0 0">
-          <div style="font-size:12px;letter-spacing:2px;color:#b995ff">DEVILSALES WEB</div>
-          <h1 style="margin:10px 0 0;font-size:28px">New project request</h1>
-        </div>
-        <div style="border:1px solid #e7e1f2;border-top:0;padding:26px 32px;border-radius:0 0 16px 16px">
-          <table style="width:100%;border-collapse:collapse">
-            ${rows.map(([label, value]) => `<tr><td style="padding:10px 12px 10px 0;color:#746b83;border-bottom:1px solid #eee8f5;width:145px">${escapeHtml(label)}</td><td style="padding:10px 0;border-bottom:1px solid #eee8f5;font-weight:600">${escapeHtml(value)}</td></tr>`).join("")}
-          </table>
-          <h2 style="margin:28px 0 10px;font-size:18px">Project details</h2>
-          <div style="white-space:pre-wrap;line-height:1.6;background:#f7f3ff;padding:18px;border-radius:10px">${escapeHtml(body.projectDetails)}</div>
-        </div>
-      </div>`;
+    const telegramResponse = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: telegramText,
+          parse_mode: "HTML",
+          disable_web_page_preview: true,
+        }),
+        cache: "no-store",
+      },
+    );
 
-    const text = [`New DevilSales Web project request`, ...rows.map(([label, value]) => `${label}: ${value}`), "", "Project details:", body.projectDetails].join("\n");
+    const telegramResult = await telegramResponse.json().catch(() => null);
 
-    const transporter = nodemailer.createTransport({
-      host: NEO_SMTP_HOST,
-      port: NEO_SMTP_PORT,
-      secure: true,
-      auth: { user: CONTACT_EMAIL, pass: emailPassword },
-    });
-
-    await transporter.sendMail({
-      from: `DevilSales Web <${CONTACT_EMAIL}>`,
-      to: CONTACT_EMAIL,
-      replyTo: body.businessEmail,
-      subject: `New project request — ${body.companyName}`,
-      html,
-      text,
-    });
+    if (!telegramResponse.ok || !telegramResult?.ok) {
+      console.error("Telegram delivery failed:", telegramResult ?? telegramResponse.statusText);
+      return NextResponse.json(
+        { success: false, error: "Telegram delivery failed." },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact form error:", error);
-    return NextResponse.json({ success: false, error: "Contact submission failed." }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Contact submission failed." },
+      { status: 500 },
+    );
   }
 }
