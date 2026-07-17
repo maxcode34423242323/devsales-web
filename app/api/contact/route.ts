@@ -5,7 +5,6 @@ type ContactRequestBody = {
   companyName?: string;
   businessEmail?: string;
   phone?: string;
-  companyWebsite?: string;
   country?: string;
   industry?: string;
   serviceNeeded?: string;
@@ -40,7 +39,6 @@ export async function POST(req: Request) {
       "companyName",
       "businessEmail",
       "phone",
-      "companyWebsite",
       "country",
       "industry",
       "serviceNeeded",
@@ -77,7 +75,7 @@ export async function POST(req: Request) {
         {
           success: false,
           error:
-            "Invalid phone number. Use country code format, for example +39 334 207 0234.",
+            "Invalid phone number. Use a valid US format, for example 315-547-8952.",
         },
         { status: 400 }
       );
@@ -118,8 +116,6 @@ export async function POST(req: Request) {
 
 📧 <b>Email:</b> ${escapeTelegramText(body.businessEmail)}
 📱 <b>Phone:</b> ${escapeTelegramText(body.phone)}
-🌐 <b>Website:</b> ${escapeTelegramText(body.companyWebsite)}
-
 🏭 <b>Industry:</b> ${escapeTelegramText(body.industry)}
 ⚙️ <b>Service Needed:</b> ${escapeTelegramText(body.serviceNeeded)}
 💰 <b>Budget:</b> ${escapeTelegramText(body.budget)}

@@ -10,7 +10,6 @@ type FormData = {
   companyName: string;
   businessEmail: string;
   phone: string;
-  companyWebsite: string;
   country: string;
   industry: string;
   serviceNeeded: string;
@@ -27,7 +26,6 @@ export default function ContactPage() {
     companyName: "",
     businessEmail: "",
     phone: "",
-    companyWebsite: "",
     country: "",
     industry: "",
     serviceNeeded: "",
@@ -95,13 +93,6 @@ export default function ContactPage() {
     } else if (!/^\+1[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(form.phone.trim())) {
       newErrors.phone =
         "Enter a valid US phone number with country code. Example: +1 315 547 8952";
-    }
-
-    if (!form.companyWebsite.trim()) {
-      newErrors.companyWebsite = "Company website is required.";
-    } else if (!/^https?:\/\/.+\..+/.test(form.companyWebsite.trim())) {
-      newErrors.companyWebsite =
-        "Enter a valid website URL. Example: https://company.com";
     }
 
     if (!form.country.trim()) {
@@ -173,7 +164,6 @@ export default function ContactPage() {
         companyName: "",
         businessEmail: "",
         phone: "",
-        companyWebsite: "",
         country: "",
         industry: "",
         serviceNeeded: "",
@@ -281,21 +271,6 @@ export default function ContactPage() {
                 />
                 {errors.phone && (
                   <p className={errorClass}>{errors.phone}</p>
-                )}
-              </div>
-
-              <div>
-                <label className={labelClass}>Company Website *</label>
-                <input
-                  name="companyWebsite"
-                  type="text"
-                  value={form.companyWebsite}
-                  onChange={handleChange}
-                  placeholder="https://company.com"
-                  className={inputClass}
-                />
-                {errors.companyWebsite && (
-                  <p className={errorClass}>{errors.companyWebsite}</p>
                 )}
               </div>
 
