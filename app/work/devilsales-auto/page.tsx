@@ -247,9 +247,9 @@ export default function DevilSalesAutoCaseStudy() {
           </h2>
 
           <p className="mt-8 max-w-3xl text-xl leading-relaxed text-zinc-600">
-            DevSales Web designs and engineers premium websites, e-commerce
-            platforms and mobile applications for ambitious brands across
-            Europe, the UK, UAE and North America.
+            DevilSales Web designs and engineers premium websites and digital
+            platforms for ambitious service businesses across the United
+            States.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
