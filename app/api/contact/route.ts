@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 type ContactRequestBody = {
   fullName?: string;
@@ -16,6 +17,8 @@ type ContactRequestBody = {
 };
 
 const CONTACT_EMAIL = "info@devilsales.dev";
+const NEO_SMTP_HOST = "smtp0001.neo.space";
+const NEO_SMTP_PORT = 465;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -60,9 +63,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: "SMS consent is required before submitting this form." }, { status: 400 });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error("RESEND_API_KEY is missing.");
+    const emailPassword = process.env.NEO_EMAIL_PASSWORD;
+    if (!emailPassword) {
+      console.error("NEO_EMAIL_PASSWORD is missing.");
       return NextResponse.json({ success: false, error: "Server configuration error." }, { status: 500 });
     }
 
@@ -91,24 +94,21 @@ export async function POST(req: Request) {
 
     const text = [`New DevilSales Web project request`, ...rows.map(([label, value]) => `${label}: ${value}`), "", "Project details:", body.projectDetails].join("\n");
 
-    const emailResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: "DevilSales Web <leads@devilsales.dev>",
-        to: [CONTACT_EMAIL],
-        reply_to: body.businessEmail,
-        subject: `New project request — ${body.companyName}`,
-        html,
-        text,
-      }),
-      cache: "no-store",
+    const transporter = nodemailer.createTransport({
+      host: NEO_SMTP_HOST,
+      port: NEO_SMTP_PORT,
+      secure: true,
+      auth: { user: CONTACT_EMAIL, pass: emailPassword },
     });
 
-    if (!emailResponse.ok) {
-      console.error("Email delivery failed:", await emailResponse.text());
-      return NextResponse.json({ success: false, error: "Email delivery failed." }, { status: 500 });
-    }
+    await transporter.sendMail({
+      from: `DevilSales Web <${CONTACT_EMAIL}>`,
+      to: CONTACT_EMAIL,
+      replyTo: body.businessEmail,
+      subject: `New project request — ${body.companyName}`,
+      html,
+      text,
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
