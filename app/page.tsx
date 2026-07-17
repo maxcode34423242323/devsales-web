@@ -7,11 +7,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const projects = [
-  ["Personal Injury Law", "Omar Ochoa Law", "/images/apex-legal.png", "https://omarochoalaw.com"], ["Plastic Surgery", "Maryland Plastic Surgery", "/images/devilsales-home.png", "https://mdcosmetic.com"],
-  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/devilsales-lead.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/elite-estates.png", "https://www.yurasroofing.com"],
-  ["HVAC", "Comfort Systems USA", "/images/devilsales-car.png", "https://comfortsystemsusa.com"], ["Home Remodeling", "Blue Divide", "/images/devilsales-home.png", "https://bluedivide.com"],
-  ["Luxury Home Builders", "DWELL44", "/images/elite-estates.png", "https://dwell44.com"], ["Medical Spa", "LIV Wellness Lounge", "/images/devilsales-lead.png", "https://livwellnesslounge.com"],
-  ["Restoration", "FIRST ONSITE", "/images/apex-legal.png", "https://firstonsite.com"], ["Commercial Landscaping", "Blakedown Landscapes", "/images/elite-estates.png", "https://www.blakedown.co.uk"],
+  ["Personal Injury Law", "Omar Ochoa Law", "/images/reference-omar-law.png", "https://www.omarochoalaw.com"], ["Plastic Surgery", "Austin-Weston", "/images/reference-austin-plastic.png", "https://www.austin-weston.com"],
+  ["Cosmetic Dentistry", "Apa Aesthetic", "/images/reference-apa-aesthetic.png", "https://apaaesthetic.com"], ["Roofing", "Yuras Roofing", "/images/reference-yuras-roofing.png", "https://www.yurasroofing.com"],
+  ["HVAC", "Comfort Systems USA", "/images/reference-comfort-systems.png", "https://comfortsystemsusa.com"], ["Home Remodeling", "Excel Remodeling", "/images/reference-excel-remodeling.png", "https://www.excelremodeling.com"],
+  ["Luxury Home Builders", "DWELL44", "/images/reference-dwell44.png", "https://dwell44.com"], ["Medical Spa", "SkinSpirit", "/images/reference-skinspirit.png", "https://www.skinspirit.com"],
+  ["Restoration", "FIRST ONSITE", "/images/reference-first-onsite.png", "https://firstonsite.com"], ["Commercial Landscaping", "BrightView", "/images/reference-brightview.png", "https://www.brightview.com"],
 ];
 const capabilities = [
   ["01", "Strategy", "Positioning, audience research and a conversion path built around the way your customers choose."],
